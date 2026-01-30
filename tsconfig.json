@@ -29,7 +29,7 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.spec.json" },
 
-    { "path": "./projects/deco/tsconfig.lib.json" },
-    { "path": "./projects/deco/tsconfig.spec.json" }
+    { "path": "./projects/@avine/deco/tsconfig.lib.json" },
+    { "path": "./projects/@avine/deco/tsconfig.spec.json" }
   ]
 }
