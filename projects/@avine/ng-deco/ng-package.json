@@ -3,5 +3,6 @@
   "dest": "../../../dist/@avine/ng-deco",
   "lib": {
     "entryFile": "index.ts"
-  }
+  },
+  "assets": ["styles/"]
 }
