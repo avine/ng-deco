@@ -16,9 +16,9 @@ import { LayoutRegionPipe } from './layout-region-pipe';
 import { LayoutSideService } from './layout-side-service';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'dc-layout',
   host: {
-    class: 'app-layout',
+    class: 'dc-layout',
     '[style]': 'computedStyle()',
   },
   imports: [
@@ -44,10 +44,10 @@ export class Layout {
     const { sidenavWidth, sidebarWidth, panelLeftWidth, panelRightWidth } =
       this.configService.config();
     return [
-      `--app-layout-sidenav-width: ${sidenavWidth}`,
-      `--app-layout-sidebar-width: ${sidebarWidth}`,
-      `--app-layout-panel-left-width: ${panelLeftWidth}`,
-      `--app-layout-panel-right-width: ${panelRightWidth}`,
+      `--dc-layout-sidenav-width: ${sidenavWidth}`,
+      `--dc-layout-sidebar-width: ${sidebarWidth}`,
+      `--dc-layout-panel-left-width: ${panelLeftWidth}`,
+      `--dc-layout-panel-right-width: ${panelRightWidth}`,
     ].join('; ');
   });
 

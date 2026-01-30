@@ -1,6 +1,6 @@
 @let sidenav = ('sidenav' | layoutRegion)();
 
-<mat-toolbar class="app-layout__header" role="heading">
+<mat-toolbar class="dc-layout__header" role="heading">
   <button
     matIconButton
     aria-label="Toggle Sidenav"
@@ -20,7 +20,7 @@
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 
-  <div class="app-layout__header-center">
+  <div class="dc-layout__header-center">
     @for (item of ('headerCenter' | layoutRegion)(); track item) {
       <ng-container [ngTemplateOutlet]="item.template" />
     }
@@ -32,14 +32,14 @@
 </mat-toolbar>
 
 <mat-drawer-container
-  class="app-layout__container"
+  class="dc-layout__container"
   [hasBackdrop]="sideService.hasBackdrop()"
   (backdropClick)="sideService.toggleSidenav(false); sideService.toggleSidebar(false)"
   #drawerContainer
 >
   <mat-drawer
-    class="app-layout__sidenav"
-    [class.app-layout__sidenav--width-shadow]="
+    class="dc-layout__sidenav"
+    [class.dc-layout__sidenav--width-shadow]="
       sideService.sidebarOpened() && sideService.sidebarOpened()
     "
     role="complementary"
@@ -53,13 +53,13 @@
 
   <mat-drawer-content>
     <div
-      class="app-layout__content"
-      [class.app-layout__content--width-sidenav-opened]="sideService.sidenavOpened()"
-      [class.app-layout__content--width-sidebar-opened]="sideService.sidebarOpened()"
+      class="dc-layout__content"
+      [class.dc-layout__content--width-sidenav-opened]="sideService.sidenavOpened()"
+      [class.dc-layout__content--width-sidebar-opened]="sideService.sidebarOpened()"
     >
       @let panelLeft = ('panelLeft' | layoutRegion)();
       @if (panelLeft.length) {
-        <div class="app-layout__panel app-layout__panel--left">
+        <div class="dc-layout__panel dc-layout__panel--left">
           @for (item of panelLeft; track item) {
             <ng-container [ngTemplateOutlet]="item.template" />
           }
@@ -68,14 +68,14 @@
 
       @let panelRight = ('panelRight' | layoutRegion)();
       @if (panelRight.length) {
-        <div class="app-layout__panel app-layout__panel--right">
+        <div class="dc-layout__panel dc-layout__panel--right">
           @for (item of panelRight; track item) {
             <ng-container [ngTemplateOutlet]="item.template" />
           }
         </div>
       }
 
-      <main class="app-layout__main">
+      <main class="dc-layout__main">
         <ng-content />
       </main>
     </div>
@@ -83,13 +83,13 @@
 
   @let sidebar = ('sidebar' | layoutRegion)();
   <mat-drawer
-    class="app-layout__sidebar"
+    class="dc-layout__sidebar"
     role="complementary"
     position="end"
     [mode]="sideService.sidebarMode()"
     [opened]="!!sidebar.length && sideService.sidebarOpened()"
   >
-    <div class="app-layout__sidebar-inner">
+    <div class="dc-layout__sidebar-inner">
       @for (item of sidebar; track item) {
         <ng-container [ngTemplateOutlet]="item.template" />
       }
