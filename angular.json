@@ -88,20 +88,20 @@
         }
       }
     },
-    "deco": {
+    "ng-deco": {
       "projectType": "library",
-      "root": "projects/@avine/deco",
-      "sourceRoot": "projects/@avine/deco/src",
+      "root": "projects/@avine/ng-deco",
+      "sourceRoot": "projects/@avine/ng-deco/src",
       "prefix": "dc",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/@avine/deco/tsconfig.lib.prod.json"
+              "tsConfig": "projects/@avine/ng-deco/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/@avine/deco/tsconfig.lib.json"
+              "tsConfig": "projects/@avine/ng-deco/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -109,14 +109,17 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/@avine/deco/tsconfig.spec.json"
+            "tsConfig": "projects/@avine/ng-deco/tsconfig.spec.json"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/@avine/deco/**/*.ts", "projects/@avine/deco/**/*.html"],
-            "eslintConfig": "projects/@avine/deco/eslint.config.js"
+            "lintFilePatterns": [
+              "projects/@avine/ng-deco/**/*.ts",
+              "projects/@avine/ng-deco/**/*.html"
+            ],
+            "eslintConfig": "projects/@avine/ng-deco/eslint.config.js"
           }
         }
       }

@@ -15,7 +15,8 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "deco": ["./dist/deco"]
+      // "@avine/ng-deco/*": ["./dist/@avine/ng-deco/*"]
+      "@avine/ng-deco/*": ["./projects/@avine/ng-deco/*"]
     }
   },
   "angularCompilerOptions": {
@@ -29,7 +30,7 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.spec.json" },
 
-    { "path": "./projects/@avine/deco/tsconfig.lib.json" },
-    { "path": "./projects/@avine/deco/tsconfig.spec.json" }
+    { "path": "./projects/@avine/ng-deco/tsconfig.lib.json" },
+    { "path": "./projects/@avine/ng-deco/tsconfig.spec.json" }
   ]
 }

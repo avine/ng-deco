@@ -1,5 +1,5 @@
 {
-  "name": "deco",
+  "name": "@avine/ng-deco",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^21.1.0",
