@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Layout } from './layout';
-import { LayoutRegion } from './layout-region';
+import { DcLayout } from './layout';
+import { DcLayoutRegion } from './layout-region';
 
 export * from './layout';
 export * from './layout-config-service';
@@ -11,10 +11,10 @@ export * from './layout-region-service';
 export * from './layout-side-service';
 export * from './layout-types';
 
-export const LayoutModule = [Layout, LayoutRegion] as const;
+export const DcLayoutModule = [DcLayout, DcLayoutRegion] as const;
 
 @NgModule({
-  imports: [...LayoutModule],
-  exports: [...LayoutModule],
+  imports: [...DcLayoutModule],
+  exports: [...DcLayoutModule],
 })
-export class LayoutNgModule {}
+export class DcLayoutNgModule {}

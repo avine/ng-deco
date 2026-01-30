@@ -1,4 +1,4 @@
-@let sidenav = ('sidenav' | layoutRegion)();
+@let sidenav = ('sidenav' | dcLayoutRegion)();
 
 <mat-toolbar class="dc-layout__header" role="heading">
   <button
@@ -16,17 +16,17 @@
     </mat-icon>
   </button>
 
-  @for (item of ('headerLeft' | layoutRegion)(); track item) {
+  @for (item of ('headerLeft' | dcLayoutRegion)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 
   <div class="dc-layout__header-center">
-    @for (item of ('headerCenter' | layoutRegion)(); track item) {
+    @for (item of ('headerCenter' | dcLayoutRegion)(); track item) {
       <ng-container [ngTemplateOutlet]="item.template" />
     }
   </div>
 
-  @for (item of ('headerRight' | layoutRegion)(); track item) {
+  @for (item of ('headerRight' | dcLayoutRegion)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 </mat-toolbar>
@@ -57,7 +57,7 @@
       [class.dc-layout__content--width-sidenav-opened]="sideService.sidenavOpened()"
       [class.dc-layout__content--width-sidebar-opened]="sideService.sidebarOpened()"
     >
-      @let panelLeft = ('panelLeft' | layoutRegion)();
+      @let panelLeft = ('panelLeft' | dcLayoutRegion)();
       @if (panelLeft.length) {
         <div class="dc-layout__panel dc-layout__panel--left">
           @for (item of panelLeft; track item) {
@@ -66,7 +66,7 @@
         </div>
       }
 
-      @let panelRight = ('panelRight' | layoutRegion)();
+      @let panelRight = ('panelRight' | dcLayoutRegion)();
       @if (panelRight.length) {
         <div class="dc-layout__panel dc-layout__panel--right">
           @for (item of panelRight; track item) {
@@ -81,7 +81,7 @@
     </div>
   </mat-drawer-content>
 
-  @let sidebar = ('sidebar' | layoutRegion)();
+  @let sidebar = ('sidebar' | dcLayoutRegion)();
   <mat-drawer
     class="dc-layout__sidebar"
     role="complementary"

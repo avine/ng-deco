@@ -1,14 +1,14 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import { LayoutRegionService } from './layout-region-service';
-import { LayoutRegionName } from './layout-types';
+import { DcLayoutRegionService } from './layout-region-service';
+import { DcLayoutRegionName } from './layout-types';
 
 @Pipe({
-  name: 'layoutRegion',
+  name: 'dcLayoutRegion',
 })
-export class LayoutRegionPipe implements PipeTransform {
-  private layoutRegionService = inject(LayoutRegionService);
+export class DcLayoutRegionPipe implements PipeTransform {
+  private layoutRegionService = inject(DcLayoutRegionService);
 
-  transform(name: LayoutRegionName) {
+  transform(name: DcLayoutRegionName) {
     return this.layoutRegionService.get(name);
   }
 }

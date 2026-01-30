@@ -11,9 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { LayoutConfigService } from './layout-config-service';
-import { LayoutRegionPipe } from './layout-region-pipe';
-import { LayoutSideService } from './layout-side-service';
+import { DcLayoutConfigService } from './layout-config-service';
+import { DcLayoutRegionPipe } from './layout-region-pipe';
+import { DcLayoutSideService } from './layout-side-service';
 
 @Component({
   selector: 'dc-layout',
@@ -27,16 +27,16 @@ import { LayoutSideService } from './layout-side-service';
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
-    LayoutRegionPipe,
+    DcLayoutRegionPipe,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class Layout {
-  protected configService = inject(LayoutConfigService);
+export class DcLayout {
+  protected configService = inject(DcLayoutConfigService);
 
-  protected sideService = inject(LayoutSideService);
+  protected sideService = inject(DcLayoutSideService);
 
   private drawerContainer = viewChild(MatDrawerContainer);
 

@@ -8,22 +8,22 @@ import {
   Signal,
   signal,
 } from '@angular/core';
-import { LAYOUT_DEFAULT_CONFIG } from './layout-constants';
-import { LayoutConfig } from './layout-types';
+import { DC_LAYOUT_DEFAULT_CONFIG } from './layout-constants';
+import { DcLayoutConfig } from './layout-types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LayoutConfigService {
-  private readonly _config = signal<LayoutConfig>(LAYOUT_DEFAULT_CONFIG);
+export class DcLayoutConfigService {
+  private readonly _config = signal<DcLayoutConfig>(DC_LAYOUT_DEFAULT_CONFIG);
 
   readonly config = this._config.asReadonly();
 
   register(
-    partialConfig: Partial<LayoutConfig> | Signal<Partial<LayoutConfig>>,
+    partialConfig: Partial<DcLayoutConfig> | Signal<Partial<DcLayoutConfig>>,
     injector?: Injector,
   ) {
-    const configKeys = new Set<keyof LayoutConfig>();
+    const configKeys = new Set<keyof DcLayoutConfig>();
 
     effect(
       () => {
@@ -31,7 +31,7 @@ export class LayoutConfigService {
 
         this._config.update((config) => ({ ...config, ..._partialConfig }));
 
-        Object.keys(_partialConfig).forEach((key) => configKeys.add(key as keyof LayoutConfig));
+        Object.keys(_partialConfig).forEach((key) => configKeys.add(key as keyof DcLayoutConfig));
       },
       { injector },
     );
@@ -40,10 +40,10 @@ export class LayoutConfigService {
     destroyRef.onDestroy(() => this.reset(...configKeys));
   }
 
-  private reset(...configKeys: (keyof LayoutConfig)[]) {
+  private reset(...configKeys: (keyof DcLayoutConfig)[]) {
     this._config.update((config) => ({
       ...config,
-      ...Object.fromEntries(configKeys.map((key) => [key, LAYOUT_DEFAULT_CONFIG[key]])),
+      ...Object.fromEntries(configKeys.map((key) => [key, DC_LAYOUT_DEFAULT_CONFIG[key]])),
     }));
   }
 }

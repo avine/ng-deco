@@ -1,6 +1,6 @@
-import { LayoutConfig } from './layout-types';
+import { DcLayoutConfig } from './layout-types';
 
-export const LAYOUT_DEFAULT_CONFIG = {
+export const DC_LAYOUT_DEFAULT_CONFIG = {
   sidenavWidth: '176px',
 
   sidebarWidth: '176px',
@@ -9,4 +9,4 @@ export const LAYOUT_DEFAULT_CONFIG = {
   panelLeftWidth: '176px',
 
   panelRightWidth: '176px',
-} as const satisfies LayoutConfig;
+} as const satisfies DcLayoutConfig;

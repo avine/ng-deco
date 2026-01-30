@@ -4,16 +4,16 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
-import { LayoutConfigService } from './layout-config-service';
-import { LayoutRegionService } from './layout-region-service';
+import { DcLayoutConfigService } from './layout-config-service';
+import { DcLayoutRegionService } from './layout-region-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LayoutSideService {
-  private config = inject(LayoutConfigService);
+export class DcLayoutSideService {
+  private config = inject(DcLayoutConfigService);
 
-  private regionService = inject(LayoutRegionService);
+  private regionService = inject(DcLayoutRegionService);
 
   readonly isMobile = toSignal(
     inject(BreakpointObserver)

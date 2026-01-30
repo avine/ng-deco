@@ -1,23 +1,23 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { LayoutRegion } from './layout-region';
-import { LayoutRegionName } from './layout-types';
+import { DcLayoutRegion } from './layout-region';
+import { DcLayoutRegionName } from './layout-types';
 import { sortLayoutRegions } from './layout-utils';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LayoutRegionService {
-  private list = signal<LayoutRegion[]>([]);
+export class DcLayoutRegionService {
+  private list = signal<DcLayoutRegion[]>([]);
 
-  add(item: LayoutRegion) {
+  add(item: DcLayoutRegion) {
     this.list.update((list) => [...list, item]);
   }
 
-  remove(item: LayoutRegion) {
+  remove(item: DcLayoutRegion) {
     this.list.update((list) => list.filter((_item) => _item !== item));
   }
 
-  get(name: LayoutRegionName) {
+  get(name: DcLayoutRegionName) {
     return computed(() => sortLayoutRegions(this.list().filter((item) => item.name() === name)));
   }
 }

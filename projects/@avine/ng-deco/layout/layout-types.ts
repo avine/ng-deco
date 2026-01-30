@@ -1,6 +1,6 @@
 import { MatDrawerMode } from '@angular/material/sidenav';
 
-export type LayoutRegionName =
+export type DcLayoutRegionName =
   | 'headerLeft'
   | 'headerCenter'
   | 'headerRight'
@@ -9,7 +9,7 @@ export type LayoutRegionName =
   | 'panelLeft'
   | 'panelRight';
 
-export interface LayoutConfig {
+export interface DcLayoutConfig {
   sidenavWidth: string;
 
   sidebarWidth: string;
