@@ -1,0 +1,18 @@
+<app-layout>
+  <router-outlet />
+</app-layout>
+
+<ng-template appLayoutRegion="headerLeft">
+  <div>Ng-Deco</div>
+</ng-template>
+
+<ng-template appLayoutRegion="headerRight">
+  <a
+    matIconButton
+    matTooltip="View on GitHub"
+    href="https://github.com/avine/ng-deco"
+    target="_blank"
+  >
+    <mat-icon>code</mat-icon>
+  </a>
+</ng-template>
