@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { DcLayout } from './layout';
-import { DcLayoutRegion } from './layout-region';
+import { DcLayoutRegionItem } from './layout-region-item';
 
 export * from './layout';
 export * from './layout-config-service';
 export * from './layout-constants';
-export * from './layout-region';
+export * from './layout-region-item';
 export * from './layout-region-pipe';
 export * from './layout-region-service';
 export * from './layout-side-service';
 export * from './layout-types';
 
-export const DcLayoutModule = [DcLayout, DcLayoutRegion] as const;
+export const DcLayoutModule = [DcLayout, DcLayoutRegionItem] as const;
 
 @NgModule({
   imports: [...DcLayoutModule],

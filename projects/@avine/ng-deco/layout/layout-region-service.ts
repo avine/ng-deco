@@ -1,5 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { DcLayoutRegion } from './layout-region';
+import { DcLayoutRegionItem } from './layout-region-item';
 import { DcLayoutRegionName } from './layout-types';
 import { sortLayoutRegions } from './layout-utils';
 
@@ -7,13 +7,13 @@ import { sortLayoutRegions } from './layout-utils';
   providedIn: 'root',
 })
 export class DcLayoutRegionService {
-  private list = signal<DcLayoutRegion[]>([]);
+  private list = signal<DcLayoutRegionItem[]>([]);
 
-  add(item: DcLayoutRegion) {
+  add(item: DcLayoutRegionItem) {
     this.list.update((list) => [...list, item]);
   }
 
-  remove(item: DcLayoutRegion) {
+  remove(item: DcLayoutRegionItem) {
     this.list.update((list) => list.filter((_item) => _item !== item));
   }
 

@@ -12,12 +12,12 @@ import { DcLayoutRegionService } from './layout-region-service';
 import { DcLayoutRegionName } from './layout-types';
 
 @Directive({
-  selector: '[dcLayoutRegion]',
+  selector: '[dcLayoutRegionItem]',
 })
-export class DcLayoutRegion {
+export class DcLayoutRegionItem {
   readonly template = inject(TemplateRef);
 
-  readonly name = input.required<DcLayoutRegionName>({ alias: 'dcLayoutRegion' });
+  readonly name = input.required<DcLayoutRegionName>({ alias: 'dcLayoutRegionItem' });
 
   readonly index = input(undefined, {
     transform: (value: string | number | undefined) => {

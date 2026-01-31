@@ -1,6 +1,6 @@
-import { DcLayoutRegion } from './layout-region';
+import { DcLayoutRegionItem } from './layout-region-item';
 
-export const sortLayoutRegions = (list: DcLayoutRegion[]) =>
+export const sortLayoutRegions = (list: DcLayoutRegionItem[]) =>
   list
     .map((item, index) => ({ item, index: item.index() ?? index }))
     .sort((a, b) => a.index - b.index)
