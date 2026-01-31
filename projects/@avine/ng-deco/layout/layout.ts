@@ -34,15 +34,14 @@ import { DcLayoutSideService } from './layout-side-service';
   encapsulation: ViewEncapsulation.None,
 })
 export class DcLayout {
-  protected configService = inject(DcLayoutConfigService);
+  protected config = inject(DcLayoutConfigService).config;
 
   protected sideService = inject(DcLayoutSideService);
 
   private drawerContainer = viewChild(MatDrawerContainer);
 
   protected computedStyle = computed(() => {
-    const { sidenavWidth, sidebarWidth, panelLeftWidth, panelRightWidth } =
-      this.configService.config();
+    const { sidenavWidth, sidebarWidth, panelLeftWidth, panelRightWidth } = this.config();
     return [
       `--dc-layout-sidenav-width: ${sidenavWidth}`,
       `--dc-layout-sidebar-width: ${sidebarWidth}`,
@@ -53,11 +52,9 @@ export class DcLayout {
 
   constructor() {
     afterRenderEffect(() => {
-      this.configService.config();
+      this.config();
 
       this.drawerContainer()?.updateContentMargins(); // FIXME: Faire ça seulement si les sides ont changé dans la config...
     });
-
-    // TODO: sur mobile, n'avoir qu'un seul side ouvert à la fois...
   }
 }

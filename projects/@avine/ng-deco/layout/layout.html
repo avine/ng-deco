@@ -40,7 +40,10 @@
   <mat-drawer
     class="dc-layout__sidenav"
     [class.dc-layout__sidenav--width-shadow]="
-      sideService.sidebarOpened() && sideService.sidebarOpened()
+      !!sidenav.length &&
+      sideService.sidenavOpened() &&
+      sideService.sidebarOpened() &&
+      config().sidebarDesktopMode === 'push'
     "
     role="complementary"
     [mode]="sideService.sidenavMode()"

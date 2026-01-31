@@ -1,5 +1,13 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { computed, effect, inject, Injectable, signal, untracked } from '@angular/core';
+import {
+  afterRenderEffect,
+  computed,
+  effect,
+  inject,
+  Injectable,
+  signal,
+  untracked,
+} from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
@@ -21,7 +29,7 @@ export class DcLayoutSideService {
       .pipe(map(({ matches }) => matches)),
   );
 
-  readonly sidenavOpened = signal(true);
+  readonly sidenavOpened = signal(false);
 
   readonly sidebarOpened = signal(false);
 
@@ -55,8 +63,8 @@ export class DcLayoutSideService {
     const sidenav = this.regionService.get('sidenav');
     const sidebar = this.regionService.get('sidebar');
 
-    effect(() => sidenav().length || this.sidenavOpened.set(false));
-    effect(() => sidebar().length || this.sidebarOpened.set(false));
+    afterRenderEffect(() => sidenav().length || this.sidenavOpened.set(false));
+    afterRenderEffect(() => sidebar().length || this.sidebarOpened.set(false));
   }
 
   private preventSideConflict() {
