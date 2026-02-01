@@ -1,0 +1,19 @@
+@let _action = action();
+
+<div
+  class="dc-sidenav-trigger__container"
+  [class.dc-sidenav-trigger__container--open]="_action === 'open'"
+  [class.dc-sidenav-trigger__container--close]="_action === 'close'"
+>
+  <mat-icon>
+    @if (_action === 'open') {
+      {{ icon() ?? 'menu' }}
+    } @else {
+      {{ closeIcon() ?? icon() ?? 'menu_open' }}
+    }
+  </mat-icon>
+
+  <div class="dc-sidenav-trigger__title">
+    <ng-content />
+  </div>
+</div>

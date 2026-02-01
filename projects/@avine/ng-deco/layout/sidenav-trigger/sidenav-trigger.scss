@@ -1,0 +1,98 @@
+@use 'sass:math' as math;
+
+$sidebar-trigger-content-size: 2.25rem;
+$sidebar-trigger-content-gutter: 0.25rem;
+$sidebar-trigger-full-size: $sidebar-trigger-content-size + 2 * $sidebar-trigger-content-gutter;
+
+// Note: the size of the Angular Material `<mat-icon>` is: `24px` (which is equivalent to `1.5rem`).
+$gap: math.div($sidebar-trigger-full-size - 1.5rem, 2);
+
+$duration: 250ms;
+
+.dc-sidenav-trigger {
+  // Button reset
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  line-height: inherit;
+  font: inherit;
+  text-align: start;
+
+  cursor: pointer;
+  outline: none !important;
+
+  &__container {
+    box-sizing: border-box;
+
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+    gap: $gap;
+
+    position: relative;
+    padding-inline: $gap;
+
+    overflow: hidden;
+    height: $sidebar-trigger-content-size;
+    border-radius: 0 99px 99px 0;
+    background-color: var(--mat-sys-secondary);
+    color: var(--mat-sys-on-secondary);
+
+    &--open {
+      width: $sidebar-trigger-full-size;
+      transition:
+        left $duration ease-in-out,
+        width $duration ease-in-out,
+        box-shadow $duration ease-in-out;
+    }
+
+    &--close {
+      @media (width < 600px) {
+        border-radius: 0;
+      }
+    }
+  }
+
+  // TODO
+  //&:focus-visible &__container {
+  //  @include config.focus-visible($inner-offset: true);
+  //}
+
+  &__title {
+    text-wrap: nowrap;
+  }
+
+  &__container--open &__title {
+    opacity: 0;
+    transition: opacity $duration ease-in-out;
+  }
+
+  &__container--open:hover &__title {
+    opacity: 1;
+  }
+
+  // Note: we need to ignore `:hover` events on mobile device
+  // (otherwise the "open" trigger will remain visible even after touching it)
+  // More infos: https://stackoverflow.com/a/64553121
+  @media (hover: hover) and (pointer: fine) {
+    &__container--open {
+      left: calc(-2 * $gap);
+    }
+
+    &__container--open:hover {
+      left: 0;
+
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+
+      // More infos: https://developer.chrome.com/docs/css-ui/animate-to-height-auto
+      width: calc-size(auto, size);
+
+      transition:
+        left $duration ease-in-out math.div($duration, 2),
+        width $duration ease-in-out math.div($duration, 2),
+        box-shadow $duration ease-in-out math.div($duration, 2);
+    }
+  }
+}
