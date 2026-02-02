@@ -20,7 +20,7 @@ html {
         tertiary: mat.$blue-palette,
       ),
       typography: Lato,
-      density: -3,
+      density: -2,
     )
   );
 }
@@ -35,4 +35,28 @@ body {
 
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  // Firefox
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--mat-sys-outline) transparent;
+  }
+}
+
+// Chrome based, Safari
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(from var(--mat-sys-outline) r g b / 0.5) !important;
+  border-radius: 3px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--mat-sys-outline) !important;
 }

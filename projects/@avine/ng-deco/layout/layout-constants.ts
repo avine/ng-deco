@@ -1,9 +1,9 @@
 import { DcLayoutConfig } from './layout-types';
 
 export const DC_LAYOUT_DEFAULT_CONFIG = {
-  sidenavWidth: '176px',
+  sidenavWidth: '180px',
 
-  sidebarWidth: '176px',
+  sidebarWidth: '260px',
   sidebarDesktopMode: 'push',
 
   panelLeftWidth: '176px',

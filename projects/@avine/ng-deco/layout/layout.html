@@ -1,21 +1,6 @@
 @let sidenav = ('sidenav' | dcLayoutRegion)();
 
 <mat-toolbar class="dc-layout__header" role="heading">
-  <button
-    matIconButton
-    aria-label="Toggle Sidenav"
-    [disabled]="!sidenav.length"
-    (click)="sideService.toggleSidenav()"
-  >
-    <mat-icon>
-      @if (sideService.sidenavOpened()) {
-        menu_open
-      } @else {
-        menu
-      }
-    </mat-icon>
-  </button>
-
   @for (item of ('headerLeft' | dcLayoutRegion)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
@@ -31,6 +16,17 @@
   }
 </mat-toolbar>
 
+@if (!!sidenav.length) {
+  <button
+    class="dc-layout__sidenav-trigger-open"
+    dcSidenavTrigger="open"
+    [openCollapsed]="!!sidenav.length && sideService.sidenavOpened()"
+    (click)="sideService.toggleSidenav()"
+  >
+    Sidenav
+  </button>
+}
+
 <mat-drawer-container
   class="dc-layout__container"
   [hasBackdrop]="sideService.hasBackdrop()"
@@ -42,22 +38,31 @@
     [class.dc-layout__sidenav--width-shadow]="
       !!sidenav.length &&
       sideService.sidenavOpened() &&
-      sideService.sidebarOpened() &&
-      config().sidebarDesktopMode === 'push'
+      (sideService.isMobile() ||
+        (sideService.sidebarOpened() && config().sidebarDesktopMode === 'push'))
     "
     role="complementary"
     [mode]="sideService.sidenavMode()"
     [opened]="!!sidenav.length && sideService.sidenavOpened()"
   >
-    @for (item of sidenav; track item) {
-      <ng-container [ngTemplateOutlet]="item.template" />
-    }
+    <div class="dc-layout__sidenav-inner">
+      <div class="dc-layout__sidenav-header">
+        <button dcSidenavTrigger="close" (click)="sideService.toggleSidenav()">Sidenav</button>
+      </div>
+      <div class="dc-layout__sidenav-content">
+        @for (item of sidenav; track item) {
+          <ng-container [ngTemplateOutlet]="item.template" />
+        }
+      </div>
+    </div>
   </mat-drawer>
 
   <mat-drawer-content>
     <div
       class="dc-layout__content"
-      [class.dc-layout__content--width-sidenav-opened]="sideService.sidenavOpened()"
+      [class.dc-layout__content--width-sidenav-opened]="
+        sideService.sidenavOpened() && !sideService.isMobile()
+      "
       [class.dc-layout__content--width-sidebar-opened]="sideService.sidebarOpened()"
     >
       @let panelLeft = ('panelLeft' | dcLayoutRegion)();
@@ -93,9 +98,11 @@
     [opened]="!!sidebar.length && sideService.sidebarOpened()"
   >
     <div class="dc-layout__sidebar-inner">
-      @for (item of sidebar; track item) {
-        <ng-container [ngTemplateOutlet]="item.template" />
-      }
+      <div class="dc-layout__sidebar-content">
+        @for (item of sidebar; track item) {
+          <ng-container [ngTemplateOutlet]="item.template" />
+        }
+      </div>
     </div>
   </mat-drawer>
 </mat-drawer-container>

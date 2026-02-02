@@ -1,98 +1,111 @@
 @use 'sass:math' as math;
 
-$sidebar-trigger-content-size: 2.25rem;
-$sidebar-trigger-content-gutter: 0.25rem;
-$sidebar-trigger-full-size: $sidebar-trigger-content-size + 2 * $sidebar-trigger-content-gutter;
+$content-size: 2.25rem;
+$content-gutter: 0.25rem;
+$full-size: $content-size + 2 * $content-gutter;
+
+$label-offset: 0.5rem;
 
 // Note: the size of the Angular Material `<mat-icon>` is: `24px` (which is equivalent to `1.5rem`).
-$gap: math.div($sidebar-trigger-full-size - 1.5rem, 2);
+$grid-gap: math.div($full-size - 1.5rem, 2);
 
-$duration: 250ms;
+$transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-delay: 200ms;
 
 .dc-sidenav-trigger {
   // Button reset
-  padding: 0;
   border: none;
-  background: none;
-  color: inherit;
   line-height: inherit;
   font: inherit;
   text-align: start;
-
   cursor: pointer;
-  outline: none !important;
 
-  &__container {
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: min-content minmax(0, 1fr);
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  gap: $grid-gap;
 
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: start;
-    align-items: center;
-    gap: $gap;
+  box-sizing: border-box;
+  height: $content-size;
+  padding: 0 $grid-gap;
 
-    position: relative;
-    padding-inline: $gap;
+  border-radius: 0 99px 99px 0;
+  background-color: var(--mat-sys-secondary);
+  color: var(--mat-sys-on-secondary);
 
+  &__label {
     overflow: hidden;
-    height: $sidebar-trigger-content-size;
-    border-radius: 0 99px 99px 0;
-    background-color: var(--mat-sys-secondary);
-    color: var(--mat-sys-on-secondary);
-
-    &--open {
-      width: $sidebar-trigger-full-size;
-      transition:
-        left $duration ease-in-out,
-        width $duration ease-in-out,
-        box-shadow $duration ease-in-out;
-    }
-
-    &--close {
-      @media (width < 600px) {
-        border-radius: 0;
-      }
-    }
-  }
-
-  // TODO
-  //&:focus-visible &__container {
-  //  @include config.focus-visible($inner-offset: true);
-  //}
-
-  &__title {
     text-wrap: nowrap;
+    text-overflow: ellipsis;
   }
 
-  &__container--open &__title {
+  // ----- Open -----
+
+  &--open {
+    width: $full-size;
+    transition: $transition;
+    transition-property: width, left, box-shadow;
+  }
+
+  &--open &__label {
+    text-overflow: clip;
     opacity: 0;
-    transition: opacity $duration ease-in-out;
-  }
+    padding-right: 0;
 
-  &__container--open:hover &__title {
-    opacity: 1;
+    transition: $transition;
+    transition-property: opacity, padding-right;
   }
 
   // Note: we need to ignore `:hover` events on mobile device
   // (otherwise the "open" trigger will remain visible even after touching it)
   // More infos: https://stackoverflow.com/a/64553121
   @media (hover: hover) and (pointer: fine) {
-    &__container--open {
-      left: calc(-2 * $gap);
+    &--open {
+      left: calc(-2 * $grid-gap);
     }
 
-    &__container--open:hover {
-      left: 0;
-
+    &--open:hover:not(&--open-collapsed) {
       box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
-
-      // More infos: https://developer.chrome.com/docs/css-ui/animate-to-height-auto
       width: calc-size(auto, size);
+      left: 0;
+      transition-delay: $transition-delay;
+    }
 
-      transition:
-        left $duration ease-in-out math.div($duration, 2),
-        width $duration ease-in-out math.div($duration, 2),
-        box-shadow $duration ease-in-out math.div($duration, 2);
+    &--open:hover:not(&--open-collapsed) &__label {
+      opacity: 1;
+      padding-right: $label-offset;
+      transition-delay: $transition-delay;
+    }
+  }
+
+  &--open-collapsed {
+    left: calc(-1.5 * #{$full-size});
+  }
+
+  // ----- Close -----
+
+  &--close {
+    width: calc-size(auto, size);
+
+    transition: $transition;
+    transition-property: width, border-radius;
+  }
+
+  &--close &__label {
+    padding-right: $label-offset;
+    transition: padding-right $transition;
+  }
+
+  @media (width < 600px) {
+    &--close {
+      width: 100% !important;
+      border-radius: 0;
+    }
+
+    &--close &__label {
+      padding-right: 0;
     }
   }
 }

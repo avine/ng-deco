@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DcLayoutConfigService } from './layout-config-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
+import { DcSidenavTrigger } from './sidenav-trigger/sidenav-trigger';
 
 @Component({
   selector: 'dc-layout',
@@ -28,6 +29,7 @@ import { DcLayoutSideService } from './layout-side-service';
     MatSidenavModule,
     MatToolbarModule,
     DcLayoutRegionPipe,
+    DcSidenavTrigger,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',

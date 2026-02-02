@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
   host: {
     type: 'button',
     class: 'dc-sidenav-trigger',
+    '[class.dc-sidenav-trigger--open]': 'action() === "open"',
+    '[class.dc-sidenav-trigger--close]': 'action() === "close"',
+    '[class.dc-sidenav-trigger--open-collapsed]': 'openCollapsed()',
   },
   imports: [MatIconModule],
   templateUrl: './sidenav-trigger.html',
@@ -21,6 +24,8 @@ export class DcSidenavTrigger {
   closeIcon = input<string>();
 
   action = input.required<'open' | 'close'>({ alias: 'dcSidenavTrigger' });
+
+  openCollapsed = input(false);
 
   public focus() {
     this.elementRef.nativeElement.focus();
