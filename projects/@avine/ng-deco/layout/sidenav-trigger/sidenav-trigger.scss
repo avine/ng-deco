@@ -41,15 +41,15 @@ $transition-delay: 200ms;
     text-overflow: ellipsis;
   }
 
-  // ----- Open -----
+  // ----- Open button -----
 
-  &--open {
+  &--open-btn {
     width: $full-size;
     transition: $transition;
     transition-property: width, left, box-shadow;
   }
 
-  &--open &__label {
+  &--open-btn &__label {
     text-overflow: clip;
     opacity: 0;
     padding-right: 0;
@@ -62,49 +62,49 @@ $transition-delay: 200ms;
   // (otherwise the "open" trigger will remain visible even after touching it)
   // More infos: https://stackoverflow.com/a/64553121
   @media (hover: hover) and (pointer: fine) {
-    &--open {
+    &--open-btn {
       left: calc(-2 * $grid-gap);
     }
 
-    &--open:hover:not(&--open-collapsed) {
+    &--open-btn:hover:not(&--open-btn-collapsed) {
       box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
       width: calc-size(auto, size);
       left: 0;
       transition-delay: $transition-delay;
     }
 
-    &--open:hover:not(&--open-collapsed) &__label {
+    &--open-btn:hover:not(&--open-btn-collapsed) &__label {
       opacity: 1;
       padding-right: $label-offset;
       transition-delay: $transition-delay;
     }
   }
 
-  &--open-collapsed {
+  &--open-btn-collapsed {
     left: calc(-1.5 * #{$full-size});
   }
 
-  // ----- Close -----
+  // ----- Close button -----
 
-  &--close {
+  &--close-btn {
     width: calc-size(auto, size);
 
     transition: $transition;
     transition-property: width, border-radius;
   }
 
-  &--close &__label {
+  &--close-btn &__label {
     padding-right: $label-offset;
     transition: padding-right $transition;
   }
 
   @media (width < 600px) {
-    &--close {
+    &--close-btn {
       width: 100% !important;
       border-radius: 0;
     }
 
-    &--close &__label {
+    &--close-btn &__label {
       padding-right: 0;
     }
   }

@@ -18,7 +18,7 @@
 
 @if (!!sidenav.length) {
   <button
-    class="dc-layout__sidenav-trigger-open"
+    class="dc-layout__sidenav-open-btn"
     dcSidenavTrigger="open"
     [openCollapsed]="!!sidenav.length && sideService.sidenavOpened()"
     (click)="sideService.toggleSidenav()"
