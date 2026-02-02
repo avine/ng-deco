@@ -10,6 +10,7 @@ export * from './layout-region-pipe';
 export * from './layout-region-service';
 export * from './layout-side-service';
 export * from './layout-types';
+export * from './sidenav-trigger/sidenav-trigger';
 
 export const DcLayoutModule = [DcLayout, DcLayoutRegionItem] as const;
 
