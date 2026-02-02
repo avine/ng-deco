@@ -95,9 +95,11 @@ $transition-delay: 200ms;
   }
 
   &--open-btn-collapsed {
+    opacity: 0;
     left: calc(-1.5 * #{$full-size});
 
     transition:
+      opacity $transition,
       left $transition,
       width $transition,
       box-shadow $transition;
