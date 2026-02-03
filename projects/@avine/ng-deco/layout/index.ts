@@ -5,6 +5,7 @@ import { DcLayoutRegionItem } from './layout-region-item';
 export * from './layout';
 export * from './layout-config-service';
 export * from './layout-constants';
+export * from './layout-main-menu-mobile-service';
 export * from './layout-region-item';
 export * from './layout-region-pipe';
 export * from './layout-region-service';

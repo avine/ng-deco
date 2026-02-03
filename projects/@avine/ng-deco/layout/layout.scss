@@ -59,6 +59,31 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
     grid-area: container;
   }
 
+  &__main-menu-desktop {
+    @media (width < 600px) {
+      display: none !important;
+    }
+  }
+
+  &__main-menu-mobile-trigger {
+    @media (width >= 600px) {
+      display: none !important;
+    }
+  }
+
+  &__main-menu-mobile-content {
+    grid-area: container;
+    position: relative;
+    z-index: 999;
+    padding: var(--dc-layout-gutter-inner);
+    border-top: 1px solid var(--mat-sys-outline-variant);
+    background-color: color-mix(
+      in srgb,
+      var(--dc-layout-background-color) 65%,
+      var(--mat-sys-surface)
+    );
+  }
+
   &__sidenav {
     --mat-sidenav-container-width: var(--dc-layout-sidenav-width);
 

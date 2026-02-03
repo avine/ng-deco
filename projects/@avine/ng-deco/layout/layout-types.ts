@@ -7,7 +7,9 @@ export type DcLayoutRegionName =
   | 'sidenav'
   | 'sidebar'
   | 'panelLeft'
-  | 'panelRight';
+  | 'panelRight'
+  | 'mainMenuDesktop'
+  | 'mainMenuMobile';
 
 export interface DcLayoutConfig {
   sidenavWidth: string;

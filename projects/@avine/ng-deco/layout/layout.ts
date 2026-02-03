@@ -1,3 +1,4 @@
+import { A11yModule } from '@angular/cdk/a11y';
 import { NgTemplateOutlet } from '@angular/common';
 import {
   afterRenderEffect,
@@ -12,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DcLayoutConfigService } from './layout-config-service';
+import { DcLayoutMainMenuMobileService } from './layout-main-menu-mobile-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
 import { DcSidenavTrigger } from './sidenav-trigger/sidenav-trigger';
@@ -23,6 +25,7 @@ import { DcSidenavTrigger } from './sidenav-trigger/sidenav-trigger';
     '[style]': 'computedStyle()',
   },
   imports: [
+    A11yModule,
     NgTemplateOutlet,
     MatButtonModule,
     MatIconModule,
@@ -39,6 +42,8 @@ export class DcLayout {
   protected config = inject(DcLayoutConfigService).config;
 
   protected sideService = inject(DcLayoutSideService);
+
+  protected mainMenuMobileService = inject(DcLayoutMainMenuMobileService);
 
   private drawerContainer = viewChild(MatDrawerContainer);
 
