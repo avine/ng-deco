@@ -1,0 +1,8 @@
+@for (item of ('mobileMenu' | dcLayoutRegion)(); track item) {
+  <ng-container [ngTemplateOutlet]="item.template" />
+}
+
+<button matButton type="button" (click)="mobileMenuService.toggle(false)">
+  <mat-icon>close</mat-icon>
+  Close
+</button>

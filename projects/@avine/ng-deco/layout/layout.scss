@@ -63,6 +63,7 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
       var(--dc-layout-background-color) 65%,
       var(--mat-sys-surface)
     );
+    align-content: center;
 
     &--enter {
       animation: dcLayoutMobileMenuEnter $transition;

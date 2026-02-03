@@ -2,7 +2,6 @@
 
 <dc-header class="dc-layout__header" />
 
-@let mobileMenu = ('mobileMenu' | dcLayoutRegion)();
 @if (mobileMenuService.opened()) {
   <div
     class="dc-layout__mobile-menu"
@@ -10,9 +9,7 @@
     animate.leave="dc-layout__mobile-menu--leave"
     cdkTrapFocus
   >
-    @for (item of mobileMenu; track item) {
-      <ng-container [ngTemplateOutlet]="item.template" />
-    }
+    <dc-mobile-menu />
   </div>
 }
 

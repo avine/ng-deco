@@ -13,6 +13,7 @@ export * from './layout-region-service';
 export * from './layout-side-service';
 export * from './layout-types';
 export * from './main/main';
+export * from './mobile-menu/mobile-menu';
 export * from './sidebar/sidebar';
 export * from './sidenav-toggle/sidenav-toggle';
 export * from './sidenav/sidenav';

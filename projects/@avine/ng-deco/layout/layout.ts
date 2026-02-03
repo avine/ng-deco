@@ -1,5 +1,4 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { NgTemplateOutlet } from '@angular/common';
 import {
   afterRenderEffect,
   Component,
@@ -17,6 +16,7 @@ import { DcLayoutMobileMenuService } from './layout-mobile-menu-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
 import { DcMain } from './main/main';
+import { DcMobileMenu } from './mobile-menu/mobile-menu';
 import { DcSidebar } from './sidebar/sidebar';
 import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
 import { DcSidenav } from './sidenav/sidenav';
@@ -29,13 +29,13 @@ import { DcSidenav } from './sidenav/sidenav';
   },
   imports: [
     A11yModule,
-    NgTemplateOutlet,
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
     DcHeader,
     DcLayoutRegionPipe,
     DcMain,
+    DcMobileMenu,
     DcSidebar,
     DcSidenavToggle,
     DcSidenav,
