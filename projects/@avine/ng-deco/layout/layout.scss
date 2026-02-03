@@ -37,17 +37,7 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
 
   &__header {
     grid-area: header;
-    gap: 0.75rem;
-    padding: 0 calc(var(--dc-layout-gutter-outer) + var(--dc-layout-radius)) !important;
-
-    &-center {
-      flex-grow: 1;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: inherit;
-    }
+    padding: 0 calc(var(--dc-layout-gutter-outer) + var(--dc-layout-radius));
   }
 
   &__sidenav-toggle-open {
@@ -58,18 +48,6 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
 
   &__container {
     grid-area: container;
-  }
-
-  &__main-menu-desktop {
-    @media (width < 600px) {
-      display: none !important;
-    }
-  }
-
-  &__main-menu-mobile-toggle {
-    @media (width >= 600px) {
-      display: none !important;
-    }
   }
 
   &__main-menu-mobile-content {

@@ -1,0 +1,27 @@
+.dc-header {
+  &__container {
+    gap: 0.75rem;
+    padding: 0 !important;
+  }
+
+  &__center {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: inherit;
+  }
+
+  &__main-menu-desktop {
+    @media (width < 600px) {
+      display: none !important;
+    }
+  }
+
+  &__main-menu-mobile-toggle {
+    @media (width >= 600px) {
+      display: none !important;
+    }
+  }
+}

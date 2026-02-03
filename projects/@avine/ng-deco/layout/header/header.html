@@ -1,0 +1,37 @@
+@let mainMenuDesktop = ('mainMenuDesktop' | dcLayoutRegion)();
+@let mainMenuMobile = ('mainMenuMobile' | dcLayoutRegion)();
+
+<mat-toolbar class="dc-header__container">
+  @for (item of ('headerLeft' | dcLayoutRegion)(); track item) {
+    <ng-container [ngTemplateOutlet]="item.template" />
+  }
+
+  <div class="dc-header__center">
+    @for (item of ('headerCenter' | dcLayoutRegion)(); track item) {
+      <ng-container [ngTemplateOutlet]="item.template" />
+    }
+  </div>
+
+  @for (item of ('headerRight' | dcLayoutRegion)(); track item) {
+    <ng-container [ngTemplateOutlet]="item.template" />
+  }
+
+  @if (mainMenuDesktop.length) {
+    <div class="dc-header__main-menu-desktop">
+      @for (item of ('mainMenuDesktop' | dcLayoutRegion)(); track item) {
+        <ng-container [ngTemplateOutlet]="item.template" />
+      }
+    </div>
+  }
+
+  @if (mainMenuMobile.length) {
+    <button
+      type="button"
+      matIconButton
+      (click)="mainMenuMobileService.toggle()"
+      class="dc-header__main-menu-mobile-toggle"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  }
+</mat-toolbar>

@@ -1,43 +1,8 @@
 @let sidenav = ('sidenav' | dcLayoutRegion)();
 
-@let mainMenuDesktop = ('mainMenuDesktop' | dcLayoutRegion)();
+<dc-header class="dc-layout__header" />
+
 @let mainMenuMobile = ('mainMenuMobile' | dcLayoutRegion)();
-
-<mat-toolbar class="dc-layout__header" role="heading">
-  @for (item of ('headerLeft' | dcLayoutRegion)(); track item) {
-    <ng-container [ngTemplateOutlet]="item.template" />
-  }
-
-  <div class="dc-layout__header-center">
-    @for (item of ('headerCenter' | dcLayoutRegion)(); track item) {
-      <ng-container [ngTemplateOutlet]="item.template" />
-    }
-  </div>
-
-  @for (item of ('headerRight' | dcLayoutRegion)(); track item) {
-    <ng-container [ngTemplateOutlet]="item.template" />
-  }
-
-  @if (mainMenuDesktop.length) {
-    <div class="dc-layout__main-menu-desktop">
-      @for (item of ('mainMenuDesktop' | dcLayoutRegion)(); track item) {
-        <ng-container [ngTemplateOutlet]="item.template" />
-      }
-    </div>
-  }
-
-  @if (mainMenuMobile.length) {
-    <button
-      type="button"
-      matIconButton
-      (click)="this.mainMenuMobileService.toggle()"
-      class="dc-layout__main-menu-mobile-toggle"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-  }
-</mat-toolbar>
-
 @if (mainMenuMobileService.opened()) {
   <div class="dc-layout__main-menu-mobile-content" cdkTrapFocus>
     @for (item of mainMenuMobile; track item) {

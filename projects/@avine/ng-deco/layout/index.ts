@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { DcLayout } from './layout';
 import { DcLayoutRegionItem } from './layout-region-item';
 
+export * from './header/header';
 export * from './layout';
 export * from './layout-config-service';
 export * from './layout-constants';

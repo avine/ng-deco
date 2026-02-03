@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DcHeader } from './header/header';
 import { DcLayoutConfigService } from './layout-config-service';
 import { DcLayoutMainMenuMobileService } from './layout-main-menu-mobile-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
@@ -32,6 +33,7 @@ import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
+    DcHeader,
     DcLayoutRegionPipe,
     DcSidenavToggle,
     DcSidenavContent,
