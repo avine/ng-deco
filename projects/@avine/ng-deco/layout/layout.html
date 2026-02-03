@@ -1,5 +1,3 @@
-@let sidenav = ('sidenav' | dcLayoutRegion)();
-
 <dc-header class="dc-layout__header" />
 
 @if (mobileMenuService.opened()) {
@@ -13,7 +11,7 @@
   </div>
 }
 
-@if (sidenav.length) {
+@if (('sidenav' | dcLayoutRegion)().length) {
   <button
     class="dc-layout__sidenav-toggle-open"
     dcSidenavToggle="open"
