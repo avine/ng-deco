@@ -11,14 +11,14 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { DcHeader } from './header/header';
 import { DcLayoutConfigService } from './layout-config-service';
 import { DcLayoutMainMenuMobileService } from './layout-main-menu-mobile-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
-import { DcSidenavContent } from './sidenav-content/sidenav-content';
+import { DcSidebar } from './sidebar/sidebar';
 import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
+import { DcSidenav } from './sidenav/sidenav';
 
 @Component({
   selector: 'dc-layout',
@@ -32,11 +32,11 @@ import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatToolbarModule,
     DcHeader,
     DcLayoutRegionPipe,
+    DcSidebar,
     DcSidenavToggle,
-    DcSidenavContent,
+    DcSidenav,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',

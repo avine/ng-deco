@@ -5,13 +5,13 @@ import { DcLayoutSideService } from '../layout-side-service';
 import { DcSidenavToggle } from '../sidenav-toggle/sidenav-toggle';
 
 @Component({
-  selector: 'dc-sidenav-content',
-  host: { class: 'dc-sidenav-content' },
+  selector: 'dc-sidenav',
+  host: { class: 'dc-sidenav' },
   imports: [NgTemplateOutlet, DcLayoutRegionPipe, DcSidenavToggle],
-  templateUrl: './sidenav-content.html',
-  styleUrl: './sidenav-content.scss',
+  templateUrl: './sidenav.html',
+  styleUrl: './sidenav.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class DcSidenavContent {
+export class DcSidenav {
   protected sideService = inject(DcLayoutSideService);
 }

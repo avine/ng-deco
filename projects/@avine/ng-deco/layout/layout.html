@@ -39,7 +39,7 @@
     [opened]="sideService.sidenavOpened()"
     (closedStart)="sideService.toggleSidenav(false)"
   >
-    <dc-sidenav-content />
+    <dc-sidenav />
   </mat-drawer>
 
   <mat-drawer-content>
@@ -74,7 +74,6 @@
     </div>
   </mat-drawer-content>
 
-  @let sidebar = ('sidebar' | dcLayoutRegion)();
   <mat-drawer
     class="dc-layout__sidebar"
     role="complementary"
@@ -82,12 +81,6 @@
     [mode]="sideService.sidebarMode()"
     [opened]="sideService.sidebarOpened()"
   >
-    <div class="dc-layout__sidebar-inner">
-      <div class="dc-layout__sidebar-content">
-        @for (item of sidebar; track item) {
-          <ng-container [ngTemplateOutlet]="item.template" />
-        }
-      </div>
-    </div>
+    <dc-sidebar />
   </mat-drawer>
 </mat-drawer-container>

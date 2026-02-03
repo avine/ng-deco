@@ -1,0 +1,5 @@
+<div class="dc-sidebar__content">
+  @for (item of ('sidebar' | dcLayoutRegion)(); track item) {
+    <ng-container [ngTemplateOutlet]="item.template" />
+  }
+</div>

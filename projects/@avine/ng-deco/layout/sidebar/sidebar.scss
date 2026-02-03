@@ -1,0 +1,15 @@
+.dc-sidebar {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: var(--dc-layout-radius);
+  background-color: var(--mat-sys-surface);
+
+  &__content {
+    height: 100%;
+    position: relative;
+    overflow: auto;
+    padding: var(--dc-layout-gutter-inner);
+  }
+}

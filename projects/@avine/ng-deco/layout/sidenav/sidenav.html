@@ -1,8 +1,8 @@
-<div class="dc-sidenav-content__header">
+<div class="dc-sidenav__header">
   <button dcSidenavToggle="close" (click)="sideService.toggleSidenav()">Sidenav</button>
 </div>
 
-<div class="dc-sidenav-content__content">
+<div class="dc-sidenav__content">
   @for (item of ('sidenav' | dcLayoutRegion)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }

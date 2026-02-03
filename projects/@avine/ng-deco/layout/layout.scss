@@ -168,20 +168,5 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
     border-left: 0px !important;
     padding: var(--dc-layout-gutter-outer);
     padding-top: 0;
-
-    &-inner {
-      height: 100%;
-      overflow: hidden;
-      box-sizing: border-box;
-      border-radius: var(--dc-layout-radius);
-      background-color: var(--mat-sys-surface);
-    }
-
-    &-content {
-      height: 100%;
-      position: relative;
-      overflow: auto;
-      padding: var(--dc-layout-gutter-inner);
-    }
   }
 }

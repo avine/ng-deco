@@ -12,8 +12,9 @@ export * from './layout-region-pipe';
 export * from './layout-region-service';
 export * from './layout-side-service';
 export * from './layout-types';
-export * from './sidenav-content/sidenav-content';
+export * from './sidebar/sidebar';
 export * from './sidenav-toggle/sidenav-toggle';
+export * from './sidenav/sidenav';
 
 export const DcLayoutModule = [DcLayout, DcLayoutRegionItem] as const;
 
