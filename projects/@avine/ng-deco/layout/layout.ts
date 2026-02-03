@@ -12,11 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { DcHeader } from './header/header';
 import { DcLayoutConfigService } from './layout-config-service';
-import { DcLayoutMobileMenuService } from './layout-mobile-menu-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
 import { DcMain } from './main/main';
 import { DcMobileMenu } from './mobile-menu/mobile-menu';
+import { DcMobileMenuService } from './mobile-menu/mobile-menu-service';
 import { DcSidebar } from './sidebar/sidebar';
 import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
 import { DcSidenav } from './sidenav/sidenav';
@@ -49,7 +49,7 @@ export class DcLayout {
 
   protected sideService = inject(DcLayoutSideService);
 
-  protected mobileMenuService = inject(DcLayoutMobileMenuService);
+  protected mobileMenuService = inject(DcMobileMenuService);
 
   private drawerContainer = viewChild(MatDrawerContainer);
 

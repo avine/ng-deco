@@ -7,7 +7,7 @@ import { filter, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class DcLayoutMobileMenuService {
+export class DcMobileMenuService {
   readonly isMobile = toSignal(
     inject(BreakpointObserver)
       .observe([Breakpoints.XSmall])

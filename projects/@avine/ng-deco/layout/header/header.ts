@@ -3,8 +3,8 @@ import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { DcLayoutMobileMenuService } from '../layout-mobile-menu-service';
 import { DcLayoutRegionPipe } from '../layout-region-pipe';
+import { DcMobileMenuService } from '../mobile-menu/mobile-menu-service';
 
 @Component({
   selector: 'dc-header',
@@ -15,5 +15,5 @@ import { DcLayoutRegionPipe } from '../layout-region-pipe';
   encapsulation: ViewEncapsulation.None,
 })
 export class DcHeader {
-  protected mobileMenuService = inject(DcLayoutMobileMenuService);
+  protected mobileMenuService = inject(DcMobileMenuService);
 }
