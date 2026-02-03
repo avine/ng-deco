@@ -31,7 +31,7 @@
       type="button"
       matIconButton
       (click)="this.mainMenuMobileService.toggle()"
-      class="dc-layout__main-menu-mobile-trigger"
+      class="dc-layout__main-menu-mobile-toggle"
     >
       <mat-icon>menu</mat-icon>
     </button>
@@ -48,8 +48,8 @@
 
 @if (sidenav.length) {
   <button
-    class="dc-layout__sidenav-open-btn"
-    dcSidenavTrigger="open"
+    class="dc-layout__sidenav-toggle-open"
+    dcSidenavToggle="open"
     [openCollapsed]="sideService.sidenavOpened()"
     (click)="sideService.toggleSidenav()"
   >
@@ -74,16 +74,7 @@
     [opened]="sideService.sidenavOpened()"
     (closedStart)="sideService.toggleSidenav(false)"
   >
-    <div class="dc-layout__sidenav-inner">
-      <div class="dc-layout__sidenav-header">
-        <button dcSidenavTrigger="close" (click)="sideService.toggleSidenav()">Sidenav</button>
-      </div>
-      <div class="dc-layout__sidenav-content">
-        @for (item of sidenav; track item) {
-          <ng-container [ngTemplateOutlet]="item.template" />
-        }
-      </div>
-    </div>
+    <dc-sidenav-content />
   </mat-drawer>
 
   <mat-drawer-content>

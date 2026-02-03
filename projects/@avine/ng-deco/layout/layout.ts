@@ -16,7 +16,8 @@ import { DcLayoutConfigService } from './layout-config-service';
 import { DcLayoutMainMenuMobileService } from './layout-main-menu-mobile-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
-import { DcSidenavTrigger } from './sidenav-trigger/sidenav-trigger';
+import { DcSidenavContent } from './sidenav-content/sidenav-content';
+import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
 
 @Component({
   selector: 'dc-layout',
@@ -32,7 +33,8 @@ import { DcSidenavTrigger } from './sidenav-trigger/sidenav-trigger';
     MatSidenavModule,
     MatToolbarModule,
     DcLayoutRegionPipe,
-    DcSidenavTrigger,
+    DcSidenavToggle,
+    DcSidenavContent,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',

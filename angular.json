@@ -6,15 +6,15 @@
     "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
-  "schematics": {
-    "@schematics/angular:component": {
-      "style": "scss",
-      "viewEncapsulation": "None"
-    }
-  },
   "projects": {
     "docs": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "viewEncapsulation": "None"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -34,12 +34,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
@@ -90,6 +85,31 @@
     },
     "ng-deco": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "path": "projects/@avine/ng-deco",
+          "style": "scss",
+          "viewEncapsulation": "None"
+        },
+        "@schematics/angular:directive": {
+          "path": "projects/@avine/ng-deco"
+        },
+        "@schematics/angular:service": {
+          "path": "projects/@avine/ng-deco"
+        },
+        "@schematics/angular:pipe": {
+          "path": "projects/@avine/ng-deco"
+        },
+        "@schematics/angular:resolver": {
+          "path": "projects/@avine/ng-deco"
+        },
+        "@schematics/angular:guard": {
+          "path": "projects/@avine/ng-deco"
+        },
+        "@schematics/angular:interceptor": {
+          "path": "projects/@avine/ng-deco"
+        }
+      },
       "root": "projects/@avine/ng-deco",
       "sourceRoot": "projects/@avine/ng-deco/src",
       "prefix": "dc",
