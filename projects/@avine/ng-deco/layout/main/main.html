@@ -1,0 +1,22 @@
+@let panelLeft = ('panelLeft' | dcLayoutRegion)();
+@let panelRight = ('panelRight' | dcLayoutRegion)();
+
+@if (panelLeft.length) {
+  <div class="dc-main__panel dc-main__panel--left">
+    @for (item of panelLeft; track item) {
+      <ng-container [ngTemplateOutlet]="item.template" />
+    }
+  </div>
+}
+
+@if (panelRight.length) {
+  <div class="dc-main__panel dc-main__panel--right">
+    @for (item of panelRight; track item) {
+      <ng-container [ngTemplateOutlet]="item.template" />
+    }
+  </div>
+}
+
+<main class="dc-main__content">
+  <ng-content />
+</main>

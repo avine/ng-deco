@@ -43,35 +43,15 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <div
-      class="dc-layout__content"
-      [class.dc-layout__content--width-sidenav-opened]="
+    <dc-main
+      class="dc-layout__main"
+      [class.dc-layout__main--width-sidenav-opened]="
         sideService.sidenavOpened() && !sideService.isMobile()
       "
-      [class.dc-layout__content--width-sidebar-opened]="sideService.sidebarOpened()"
+      [class.dc-layout__main--width-sidebar-opened]="sideService.sidebarOpened()"
     >
-      @let panelLeft = ('panelLeft' | dcLayoutRegion)();
-      @if (panelLeft.length) {
-        <div class="dc-layout__panel dc-layout__panel--left">
-          @for (item of panelLeft; track item) {
-            <ng-container [ngTemplateOutlet]="item.template" />
-          }
-        </div>
-      }
-
-      @let panelRight = ('panelRight' | dcLayoutRegion)();
-      @if (panelRight.length) {
-        <div class="dc-layout__panel dc-layout__panel--right">
-          @for (item of panelRight; track item) {
-            <ng-container [ngTemplateOutlet]="item.template" />
-          }
-        </div>
-      }
-
-      <main class="dc-layout__main">
-        <ng-content />
-      </main>
-    </div>
+      <ng-content />
+    </dc-main>
   </mat-drawer-content>
 
   <mat-drawer

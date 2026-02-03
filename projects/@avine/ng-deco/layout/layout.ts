@@ -16,6 +16,7 @@ import { DcLayoutConfigService } from './layout-config-service';
 import { DcLayoutMainMenuMobileService } from './layout-main-menu-mobile-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
+import { DcMain } from './main/main';
 import { DcSidebar } from './sidebar/sidebar';
 import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
 import { DcSidenav } from './sidenav/sidenav';
@@ -34,6 +35,7 @@ import { DcSidenav } from './sidenav/sidenav';
     MatSidenavModule,
     DcHeader,
     DcLayoutRegionPipe,
+    DcMain,
     DcSidebar,
     DcSidenavToggle,
     DcSidenav,
