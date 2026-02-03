@@ -7,9 +7,9 @@
 }
 
 // Direct override
-//.mat-drawer-backdrop.mat-drawer-shown {
-//  backdrop-filter: blur(0.25rem);
-//}
+.mat-drawer-backdrop.mat-drawer-shown {
+  backdrop-filter: blur(0.15rem);
+}
 
 $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
 
@@ -37,7 +37,9 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
 
   &__header {
     grid-area: header;
+    z-index: 4;
     padding: 0 calc(var(--dc-layout-gutter-outer) + var(--dc-layout-radius));
+    background-color: var(--dc-layout-background-color);
   }
 
   &__sidenav-toggle-open {
@@ -50,10 +52,10 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
     grid-area: container;
   }
 
-  &__main-menu-mobile-content {
+  &__mobile-menu {
     grid-area: container;
     position: relative;
-    z-index: 999;
+    z-index: 3;
     padding: var(--dc-layout-gutter-inner);
     border-top: 1px solid var(--mat-sys-outline-variant);
     background-color: color-mix(
@@ -61,6 +63,13 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
       var(--dc-layout-background-color) 65%,
       var(--mat-sys-surface)
     );
+
+    &--enter {
+      animation: dcLayoutMobileMenuEnter $transition;
+    }
+    &--leave {
+      animation: dcLayoutMobileMenuLeave $transition;
+    }
   }
 
   &__sidenav {
@@ -110,5 +119,18 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
     border-left: 0px !important;
     padding: var(--dc-layout-gutter-outer);
     padding-top: 0;
+  }
+}
+
+@keyframes dcLayoutMobileMenuEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+}
+@keyframes dcLayoutMobileMenuLeave {
+  to {
+    opacity: 0;
+    transform: translateY(-0.75rem);
   }
 }

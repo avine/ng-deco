@@ -2,10 +2,15 @@
 
 <dc-header class="dc-layout__header" />
 
-@let mainMenuMobile = ('mainMenuMobile' | dcLayoutRegion)();
-@if (mainMenuMobileService.opened()) {
-  <div class="dc-layout__main-menu-mobile-content" cdkTrapFocus>
-    @for (item of mainMenuMobile; track item) {
+@let mobileMenu = ('mobileMenu' | dcLayoutRegion)();
+@if (mobileMenuService.opened()) {
+  <div
+    class="dc-layout__mobile-menu"
+    animate.enter="dc-layout__mobile-menu--enter"
+    animate.leave="dc-layout__mobile-menu--leave"
+    cdkTrapFocus
+  >
+    @for (item of mobileMenu; track item) {
       <ng-container [ngTemplateOutlet]="item.template" />
     }
   </div>

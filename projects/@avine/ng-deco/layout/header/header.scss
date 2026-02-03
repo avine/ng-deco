@@ -13,13 +13,13 @@
     gap: inherit;
   }
 
-  &__main-menu-desktop {
+  &__desktop-menu {
     @media (width < 600px) {
       display: none !important;
     }
   }
 
-  &__main-menu-mobile-toggle {
+  &__mobile-menu-toggle {
     @media (width >= 600px) {
       display: none !important;
     }
