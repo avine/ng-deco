@@ -15,8 +15,8 @@ import { DcLayoutConfigService } from './layout-config-service';
 import { DcLayoutRegionPipe } from './layout-region-pipe';
 import { DcLayoutSideService } from './layout-side-service';
 import { DcMain } from './main/main';
-import { DcMobileMenu } from './mobile-menu/mobile-menu';
-import { DcMobileMenuService } from './mobile-menu/mobile-menu-service';
+import { DcMobileMenuSlot } from './mobile-menu-slot/mobile-menu-slot';
+import { DcMobileMenuSlotService } from './mobile-menu-slot/mobile-menu-slot-service';
 import { DcSidebar } from './sidebar/sidebar';
 import { DcSidenavToggle } from './sidenav-toggle/sidenav-toggle';
 import { DcSidenav } from './sidenav/sidenav';
@@ -35,7 +35,7 @@ import { DcSidenav } from './sidenav/sidenav';
     DcHeader,
     DcLayoutRegionPipe,
     DcMain,
-    DcMobileMenu,
+    DcMobileMenuSlot,
     DcSidebar,
     DcSidenavToggle,
     DcSidenav,
@@ -49,7 +49,7 @@ export class DcLayout {
 
   protected sideService = inject(DcLayoutSideService);
 
-  protected mobileMenuService = inject(DcMobileMenuService);
+  protected mobileMenuSlotService = inject(DcMobileMenuSlotService);
 
   private drawerContainer = viewChild(MatDrawerContainer);
 

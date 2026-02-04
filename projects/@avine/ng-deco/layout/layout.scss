@@ -52,7 +52,7 @@ $transition: 400ms cubic-bezier(0.25, 0.8, 0.25, 1); // Duplicate from Material
     grid-area: container;
   }
 
-  &__mobile-menu {
+  &__mobile-menu-slot {
     grid-area: container;
     position: relative;
     z-index: 3;

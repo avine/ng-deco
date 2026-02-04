@@ -1,13 +1,13 @@
 <dc-header class="dc-layout__header" />
 
-@if (mobileMenuService.opened()) {
+@if (mobileMenuSlotService.opened()) {
   <div
-    class="dc-layout__mobile-menu"
-    animate.enter="dc-layout__mobile-menu--enter"
-    animate.leave="dc-layout__mobile-menu--leave"
+    class="dc-layout__mobile-menu-slot"
+    animate.enter="dc-layout__mobile-menu-slot--enter"
+    animate.leave="dc-layout__mobile-menu-slot--leave"
     cdkTrapFocus
   >
-    <dc-mobile-menu />
+    <dc-mobile-menu-slot />
   </div>
 }
 

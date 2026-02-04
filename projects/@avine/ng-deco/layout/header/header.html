@@ -17,7 +17,7 @@
   }
 
   @if (desktopMenu.length) {
-    <div class="dc-header__desktop-menu">
+    <div class="dc-header__desktop-menu-slot">
       @for (item of ('desktopMenu' | dcLayoutRegion)(); track item) {
         <ng-container [ngTemplateOutlet]="item.template" />
       }
@@ -28,11 +28,11 @@
     <button
       type="button"
       matIconButton
-      (click)="mobileMenuService.toggle()"
+      (click)="mobileMenuSlotService.toggle()"
       class="dc-header__mobile-menu-toggle"
     >
       <mat-icon>
-        @if (mobileMenuService.opened()) {
+        @if (mobileMenuSlotService.opened()) {
           close
         } @else {
           more_vert

@@ -13,7 +13,7 @@
     gap: inherit;
   }
 
-  &__desktop-menu {
+  &__desktop-menu-slot {
     @media (width < 600px) {
       display: none !important;
     }
