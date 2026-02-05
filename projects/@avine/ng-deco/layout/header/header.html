@@ -1,30 +1,30 @@
-@let desktopMenu = ('desktopMenu' | dcLayoutSlot)();
-@let mobileMenu = ('mobileMenu' | dcLayoutSlot)();
+@let desktopMenuItems = ('desktopMenu' | dcLayoutSlotItems)();
+@let mobileMenuItems = ('mobileMenu' | dcLayoutSlotItems)();
 
 <mat-toolbar class="dc-header__container">
-  @for (item of ('headerLeft' | dcLayoutSlot)(); track item) {
+  @for (item of ('headerLeft' | dcLayoutSlotItems)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 
   <div class="dc-header__center">
-    @for (item of ('headerCenter' | dcLayoutSlot)(); track item) {
+    @for (item of ('headerCenter' | dcLayoutSlotItems)(); track item) {
       <ng-container [ngTemplateOutlet]="item.template" />
     }
   </div>
 
-  @for (item of ('headerRight' | dcLayoutSlot)(); track item) {
+  @for (item of ('headerRight' | dcLayoutSlotItems)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 
-  @if (desktopMenu.length) {
+  @if (desktopMenuItems.length) {
     <div class="dc-header__desktop-menu-slot">
-      @for (item of ('desktopMenu' | dcLayoutSlot)(); track item) {
+      @for (item of ('desktopMenu' | dcLayoutSlotItems)(); track item) {
         <ng-container [ngTemplateOutlet]="item.template" />
       }
     </div>
   }
 
-  @if (mobileMenu.length) {
+  @if (mobileMenuItems.length) {
     <button
       type="button"
       matIconButton

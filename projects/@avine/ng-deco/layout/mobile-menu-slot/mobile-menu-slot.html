@@ -1,4 +1,4 @@
-@for (item of ('mobileMenu' | dcLayoutSlot)(); track item) {
+@for (item of ('mobileMenu' | dcLayoutSlotItems)(); track item) {
   <ng-container [ngTemplateOutlet]="item.template" />
 }
 

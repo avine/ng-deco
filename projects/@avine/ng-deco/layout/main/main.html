@@ -1,17 +1,17 @@
-@let panelLeft = ('panelLeft' | dcLayoutSlot)();
-@let panelRight = ('panelRight' | dcLayoutSlot)();
+@let panelLeftItems = ('panelLeft' | dcLayoutSlotItems)();
+@let panelRightItems = ('panelRight' | dcLayoutSlotItems)();
 
-@if (panelLeft.length) {
+@if (panelLeftItems.length) {
   <div class="dc-main__panel dc-main__panel--left">
-    @for (item of panelLeft; track item) {
+    @for (item of panelLeftItems; track item) {
       <ng-container [ngTemplateOutlet]="item.template" />
     }
   </div>
 }
 
-@if (panelRight.length) {
+@if (panelRightItems.length) {
   <div class="dc-main__panel dc-main__panel--right">
-    @for (item of panelRight; track item) {
+    @for (item of panelRightItems; track item) {
       <ng-container [ngTemplateOutlet]="item.template" />
     }
   </div>

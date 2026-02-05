@@ -2,13 +2,13 @@ import { NgTemplateOutlet } from '@angular/common';
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { DcLayoutSlotPipe } from '../layout-slot-pipe';
+import { DcLayoutSlotItemsPipe } from '../layout-slot-items-pipe';
 import { DcMobileMenuSlotService } from './mobile-menu-slot-service';
 
 @Component({
   selector: 'dc-mobile-menu-slot',
   host: { class: 'dc-mobile-menu-slot' },
-  imports: [NgTemplateOutlet, MatButtonModule, MatIconModule, DcLayoutSlotPipe],
+  imports: [NgTemplateOutlet, MatButtonModule, MatIconModule, DcLayoutSlotItemsPipe],
   templateUrl: './mobile-menu-slot.html',
   styleUrl: './mobile-menu-slot.scss',
   encapsulation: ViewEncapsulation.None,

@@ -1,11 +1,11 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { DcLayoutSlotPipe } from '../layout-slot-pipe';
+import { DcLayoutSlotItemsPipe } from '../layout-slot-items-pipe';
 
 @Component({
   selector: 'dc-sidebar',
   host: { class: 'dc-sidebar' },
-  imports: [NgTemplateOutlet, DcLayoutSlotPipe],
+  imports: [NgTemplateOutlet, DcLayoutSlotItemsPipe],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
   encapsulation: ViewEncapsulation.None,

@@ -3,7 +3,7 @@
 </div>
 
 <div class="dc-sidenav__content">
-  @for (item of ('sidenav' | dcLayoutSlot)(); track item) {
+  @for (item of ('sidenav' | dcLayoutSlotItems)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 </div>

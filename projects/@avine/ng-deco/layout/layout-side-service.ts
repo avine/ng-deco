@@ -52,11 +52,11 @@ export class DcLayoutSideService {
   }
 
   private closeEmptySide() {
-    const sidenav = this.slotService.getItems('sidenav');
-    const sidebar = this.slotService.getItems('sidebar');
+    const sidenavItems = this.slotService.getItems('sidenav');
+    const sidebarItems = this.slotService.getItems('sidebar');
 
-    effect(() => sidenav().length || this.sidenavOpened.set(false));
-    effect(() => sidebar().length || this.sidebarOpened.set(false));
+    effect(() => sidenavItems().length || this.sidenavOpened.set(false));
+    effect(() => sidebarItems().length || this.sidebarOpened.set(false));
   }
 
   private preventSideConflict() {
