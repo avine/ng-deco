@@ -1,6 +1,6 @@
 import { MatDrawerMode } from '@angular/material/sidenav';
 
-export type DcLayoutRegionName =
+export type DcLayoutSlotName =
   | 'headerLeft'
   | 'headerCenter'
   | 'headerRight'

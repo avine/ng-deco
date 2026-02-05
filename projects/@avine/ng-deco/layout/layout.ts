@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { DcHeader } from './header/header';
 import { DcLayoutConfigService } from './layout-config-service';
-import { DcLayoutRegionPipe } from './layout-region-pipe';
+import { DcLayoutSlotPipe } from './layout-slot-pipe';
 import { DcLayoutSideService } from './layout-side-service';
 import { DcMain } from './main/main';
 import { DcMobileMenuSlot } from './mobile-menu-slot/mobile-menu-slot';
@@ -33,7 +33,7 @@ import { DcSidenav } from './sidenav/sidenav';
     MatIconModule,
     MatSidenavModule,
     DcHeader,
-    DcLayoutRegionPipe,
+    DcLayoutSlotPipe,
     DcMain,
     DcMobileMenuSlot,
     DcSidebar,

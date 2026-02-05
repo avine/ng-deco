@@ -1,24 +1,24 @@
-@let desktopMenu = ('desktopMenu' | dcLayoutRegion)();
-@let mobileMenu = ('mobileMenu' | dcLayoutRegion)();
+@let desktopMenu = ('desktopMenu' | dcLayoutSlot)();
+@let mobileMenu = ('mobileMenu' | dcLayoutSlot)();
 
 <mat-toolbar class="dc-header__container">
-  @for (item of ('headerLeft' | dcLayoutRegion)(); track item) {
+  @for (item of ('headerLeft' | dcLayoutSlot)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 
   <div class="dc-header__center">
-    @for (item of ('headerCenter' | dcLayoutRegion)(); track item) {
+    @for (item of ('headerCenter' | dcLayoutSlot)(); track item) {
       <ng-container [ngTemplateOutlet]="item.template" />
     }
   </div>
 
-  @for (item of ('headerRight' | dcLayoutRegion)(); track item) {
+  @for (item of ('headerRight' | dcLayoutSlot)(); track item) {
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 
   @if (desktopMenu.length) {
     <div class="dc-header__desktop-menu-slot">
-      @for (item of ('desktopMenu' | dcLayoutRegion)(); track item) {
+      @for (item of ('desktopMenu' | dcLayoutSlot)(); track item) {
         <ng-container [ngTemplateOutlet]="item.template" />
       }
     </div>

@@ -5,7 +5,7 @@ import { MatDrawerMode } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { DcLayoutConfigService } from './layout-config-service';
-import { DcLayoutRegionService } from './layout-region-service';
+import { DcLayoutSlotService } from './layout-slot-service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ import { DcLayoutRegionService } from './layout-region-service';
 export class DcLayoutSideService {
   private config = inject(DcLayoutConfigService);
 
-  private regionService = inject(DcLayoutRegionService);
+  private slotService = inject(DcLayoutSlotService);
 
   readonly isMobile = toSignal(
     inject(BreakpointObserver)
@@ -52,8 +52,8 @@ export class DcLayoutSideService {
   }
 
   private closeEmptySide() {
-    const sidenav = this.regionService.get('sidenav');
-    const sidebar = this.regionService.get('sidebar');
+    const sidenav = this.slotService.getItems('sidenav');
+    const sidebar = this.slotService.getItems('sidebar');
 
     effect(() => sidenav().length || this.sidenavOpened.set(false));
     effect(() => sidebar().length || this.sidebarOpened.set(false));

@@ -1,5 +1,5 @@
-@let panelLeft = ('panelLeft' | dcLayoutRegion)();
-@let panelRight = ('panelRight' | dcLayoutRegion)();
+@let panelLeft = ('panelLeft' | dcLayoutSlot)();
+@let panelRight = ('panelRight' | dcLayoutSlot)();
 
 @if (panelLeft.length) {
   <div class="dc-main__panel dc-main__panel--left">

@@ -8,16 +8,16 @@ import {
   TemplateRef,
   untracked,
 } from '@angular/core';
-import { DcLayoutRegionService } from './layout-region-service';
-import { DcLayoutRegionName } from './layout-types';
+import { DcLayoutSlotService } from './layout-slot-service';
+import { DcLayoutSlotName } from './layout-types';
 
 @Directive({
-  selector: '[dcLayoutRegionItem]',
+  selector: '[dcLayoutSlotItem]',
 })
-export class DcLayoutRegionItem {
+export class DcLayoutSlotItem {
   readonly template = inject(TemplateRef);
 
-  readonly name = input.required<DcLayoutRegionName>({ alias: 'dcLayoutRegionItem' });
+  readonly name = input.required<DcLayoutSlotName>({ alias: 'dcLayoutSlotItem' });
 
   readonly index = input(undefined, {
     transform: (value: string | number | undefined) => {
@@ -27,11 +27,11 @@ export class DcLayoutRegionItem {
   });
 
   constructor() {
-    const service = inject(DcLayoutRegionService);
+    const service = inject(DcLayoutSlotService);
 
     // Run once the inputs are set (like `ngOnInit` lifecycle hook).
-    effect(() => untracked(() => service.add(this)));
+    effect(() => untracked(() => service.addItem(this)));
 
-    inject(DestroyRef).onDestroy(() => service.remove(this));
+    inject(DestroyRef).onDestroy(() => service.removeItem(this));
   }
 }
