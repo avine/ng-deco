@@ -1,27 +1,17 @@
 import { NgTemplateOutlet } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  forwardRef,
-  inject,
-  input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, forwardRef, inject, input, ViewEncapsulation } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DcIconModule } from '@avine/ng-deco/icon';
 import { _isMenuItem } from '../_menu-utils';
 import { DcMenuItem } from '../menu-types';
-import { DcSideMenuState } from './side-menu';
+import { DcSideMenuState } from './side-menu-state';
 
 @Component({
-  selector: 'dc-side-menu-node',
-  host: {
-    class: 'dc-side-menu-node',
-    role: 'presentation',
-  },
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'ul[dcSideMenuNode]',
+  host: { class: 'dc-side-menu-node' },
   imports: [
     NgTemplateOutlet,
     MatRippleModule,
@@ -32,12 +22,15 @@ import { DcSideMenuState } from './side-menu';
     forwardRef(() => DcSideMenuNode),
   ],
   templateUrl: './side-menu-node.html',
+  styleUrl: './side-menu-node.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class DcSideMenuNode {
-  protected readonly isMenuItem = _isMenuItem;
-  protected readonly state = inject(DcSideMenuState);
+  protected state = inject(DcSideMenuState);
+
+  protected isMenuItem = _isMenuItem;
 
   readonly items = input.required<DcMenuItem[]>();
+
   readonly level = input(0);
 }

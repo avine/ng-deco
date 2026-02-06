@@ -63,6 +63,28 @@ export class App {
       ],
     },
     {
+      label: 'Components2',
+      icon: 'widgets',
+      children: [
+        {
+          label: 'Material',
+          icon: 'settings',
+          routerLink: ['/material'],
+        },
+        {
+          label: 'Actions',
+          icon: 'bolt',
+          children: [
+            {
+              label: 'Run command',
+              icon: 'terminal',
+              command: () => console.log('Command executed'),
+            },
+          ],
+        },
+      ],
+    },
+    {
       label: 'External',
       icon: 'open_in_new',
       href: 'https://github.com/avine/ng-deco',

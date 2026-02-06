@@ -1,40 +1,37 @@
 @for (item of items(); track $index) {
   <li
-    role="treeitem"
-    class="dc-side-menu__node"
+    class="dc-side-menu-node__node"
     [attr.aria-expanded]="isMenuItem.children(item) ? state.expanded().has(item) : null"
   >
     @if (isMenuItem.children(item)) {
       <button
         matRipple
         type="button"
-        class="dc-side-menu__item dc-side-menu__item--parent"
-        [style.--dc-side-menu-level]="level()"
+        class="dc-side-menu-node__item dc-side-menu-node__item--parent"
+        [style.--dc-side-menu-node-level]="level()"
         (click)="state.toggle(item)"
       >
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
           [ngTemplateOutletContext]="{ $implicit: item }"
         />
-        <mat-icon class="dc-side-menu__chevron">
+        <mat-icon class="dc-side-menu-node__chevron">
           {{ state.expanded().has(item) ? 'expand_more' : 'chevron_right' }}
         </mat-icon>
       </button>
 
       @if (state.expanded().has(item)) {
-        <ul role="group" class="dc-side-menu__group">
-          <dc-side-menu-node [items]="item.children" [level]="level() + 1" />
-        </ul>
+        <ul dcSideMenuNode [items]="item.children" [level]="level() + 1"></ul>
       }
     } @else if (isMenuItem.routerLink(item)) {
       <a
         matRipple
-        class="dc-side-menu__item"
-        routerLinkActive="dc-side-menu__item--active"
+        class="dc-side-menu-node__item"
+        routerLinkActive="dc-side-menu-node__item--active"
         [routerLinkActiveOptions]="item.routerLinkActiveOptions ?? { exact: false }"
         [routerLink]="item.routerLink"
         [queryParams]="item.queryParams"
-        [style.--dc-side-menu-level]="level()"
+        [style.--dc-side-menu-node-level]="level()"
       >
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
@@ -44,10 +41,10 @@
     } @else if (isMenuItem.href(item)) {
       <a
         matRipple
-        class="dc-side-menu__item"
+        class="dc-side-menu-node__item"
         [href]="item.href"
         [attr.target]="item.target"
-        [style.--dc-side-menu-level]="level()"
+        [style.--dc-side-menu-node-level]="level()"
       >
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
@@ -58,9 +55,9 @@
       <button
         matRipple
         type="button"
-        class="dc-side-menu__item"
+        class="dc-side-menu-node__item"
         (click)="item.command()"
-        [style.--dc-side-menu-level]="level()"
+        [style.--dc-side-menu-node-level]="level()"
       >
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
@@ -75,5 +72,5 @@
   @if (item.icon) {
     <mat-icon dcIcon>{{ item.icon }}</mat-icon>
   }
-  <span class="dc-side-menu__label">{{ item.label }}</span>
+  <span class="dc-side-menu-node__label">{{ item.label }}</span>
 </ng-template>

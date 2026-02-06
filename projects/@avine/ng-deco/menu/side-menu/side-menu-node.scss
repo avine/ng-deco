@@ -1,9 +1,9 @@
-.dc-side-menu {
-  --dc-side-menu-indent: 1rem;
+.dc-side-menu-node {
+  --dc-side-menu-node-indent: 1rem;
 
   display: block;
 
-  &__group,
+  &,
   &__node {
     list-style: none;
     margin: 0;
@@ -13,7 +13,9 @@
   &__item {
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    padding-left: calc(0.75rem + var(--dc-side-menu-level, 0) * var(--dc-side-menu-indent));
+    padding-left: calc(
+      0.75rem + var(--dc-side-menu-node-level, 0) * var(--dc-side-menu-node-indent)
+    );
     border: none;
     background: none;
     color: inherit;

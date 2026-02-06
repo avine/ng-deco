@@ -1,42 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Injectable,
-  input,
-  signal,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
 import { DcMenuItem } from '../menu-types';
 import { DcSideMenuNode } from './side-menu-node';
-
-@Injectable()
-export class DcSideMenuState {
-  readonly expanded = signal(new Set<DcMenuItem>());
-
-  toggle(item: DcMenuItem): void {
-    this.expanded.update((prev) => {
-      const next = new Set(prev);
-      if (next.has(item)) {
-        next.delete(item);
-      } else {
-        next.add(item);
-      }
-      return next;
-    });
-  }
-}
+import { DcSideMenuState } from './side-menu-state';
 
 @Component({
   selector: 'dc-side-menu',
-  host: {
-    class: 'dc-side-menu',
-    role: 'tree',
-  },
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DcSideMenuNode],
   providers: [DcSideMenuState],
+  imports: [DcSideMenuNode],
   templateUrl: './side-menu.html',
-  styleUrl: './side-menu.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class DcSideMenu {
