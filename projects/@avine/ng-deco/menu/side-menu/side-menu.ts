@@ -5,6 +5,7 @@ import { DcSideMenuState } from './side-menu-state';
 
 @Component({
   selector: 'dc-side-menu',
+  host: { role: 'navigation' },
   providers: [DcSideMenuState],
   imports: [DcSideMenuNode],
   templateUrl: './side-menu.html',

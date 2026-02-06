@@ -1,28 +1,33 @@
 @for (item of items(); track $index) {
-  <li
-    class="dc-side-menu-node__node"
-    [attr.aria-expanded]="isMenuItem.children(item) ? state.expanded().has(item) : null"
-  >
+  <li class="dc-side-menu-node__li">
     @if (isMenuItem.children(item)) {
+      @let uid = getUid(item);
+
       <button
         matRipple
         type="button"
         class="dc-side-menu-node__item dc-side-menu-node__item--parent"
-        [style.--dc-side-menu-node-level]="level()"
+        [aria-expanded]="state.expanded().has(item)"
+        [aria-controls]="uid"
         (click)="state.toggle(item)"
       >
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
           [ngTemplateOutletContext]="{ $implicit: item }"
         />
+
         <mat-icon class="dc-side-menu-node__chevron">
           {{ state.expanded().has(item) ? 'expand_more' : 'chevron_right' }}
         </mat-icon>
       </button>
 
-      @if (state.expanded().has(item)) {
-        <ul dcSideMenuNode [items]="item.children" [level]="level() + 1"></ul>
-      }
+      <ul
+        dcSideMenuNode
+        [items]="item.children"
+        [level]="level() + 1"
+        [id]="uid"
+        [class.dc-side-menu-node--hidden]="!state.expanded().has(item)"
+      ></ul>
     } @else if (isMenuItem.routerLink(item)) {
       <a
         matRipple
@@ -31,7 +36,6 @@
         [routerLinkActiveOptions]="item.routerLinkActiveOptions ?? { exact: false }"
         [routerLink]="item.routerLink"
         [queryParams]="item.queryParams"
-        [style.--dc-side-menu-node-level]="level()"
       >
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
@@ -39,26 +43,14 @@
         />
       </a>
     } @else if (isMenuItem.href(item)) {
-      <a
-        matRipple
-        class="dc-side-menu-node__item"
-        [href]="item.href"
-        [attr.target]="item.target"
-        [style.--dc-side-menu-node-level]="level()"
-      >
+      <a matRipple class="dc-side-menu-node__item" [href]="item.href" [attr.target]="item.target">
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
           [ngTemplateOutletContext]="{ $implicit: item }"
         />
       </a>
     } @else if (isMenuItem.command(item)) {
-      <button
-        matRipple
-        type="button"
-        class="dc-side-menu-node__item"
-        (click)="item.command()"
-        [style.--dc-side-menu-node-level]="level()"
-      >
+      <button matRipple type="button" class="dc-side-menu-node__item" (click)="item.command()">
         <ng-container
           [ngTemplateOutlet]="itemTmpl"
           [ngTemplateOutletContext]="{ $implicit: item }"

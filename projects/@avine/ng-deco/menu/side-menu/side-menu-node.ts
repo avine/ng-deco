@@ -11,7 +11,10 @@ import { DcSideMenuState } from './side-menu-state';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ul[dcSideMenuNode]',
-  host: { class: 'dc-side-menu-node' },
+  host: {
+    class: 'dc-side-menu-node',
+    '[style.--dc-side-menu-node-level]': 'level()',
+  },
   imports: [
     NgTemplateOutlet,
     MatRippleModule,
@@ -26,11 +29,22 @@ import { DcSideMenuState } from './side-menu-state';
   encapsulation: ViewEncapsulation.None,
 })
 export class DcSideMenuNode {
-  protected state = inject(DcSideMenuState);
-
   protected isMenuItem = _isMenuItem;
+
+  protected state = inject(DcSideMenuState);
 
   readonly items = input.required<DcMenuItem[]>();
 
   readonly level = input(0);
+
+  private uidMap = new Map<DcMenuItem, string>();
+
+  protected getUid(item: DcMenuItem) {
+    let uid = this.uidMap.get(item);
+    if (!uid) {
+      uid = `side-menu-node-${crypto.randomUUID()}`;
+      this.uidMap.set(item, uid);
+    }
+    return uid;
+  }
 }
