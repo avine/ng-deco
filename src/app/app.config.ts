@@ -2,8 +2,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter, withViewTransitions } from '@angular/router';
+import { provideDcIcons } from '@avine/ng-deco/icon';
 import { routes } from './app.routes';
-import { provideIcons } from './shared/icons-provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
 
-    provideIcons('material-symbols-rounded'),
+    provideDcIcons('material-symbols-rounded'),
   ],
 };

@@ -1,0 +1,13 @@
+import { NgModule } from '@angular/core';
+import { DcMainMenu } from './main-menu/main-menu';
+
+export * from './main-menu/main-menu';
+export * from './menu-types';
+
+export const DcMenuModule = [DcMainMenu] as const;
+
+@NgModule({
+  imports: [...DcMenuModule],
+  exports: [...DcMenuModule],
+})
+export class DcMenuNgModule {}

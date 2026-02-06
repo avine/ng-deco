@@ -1,0 +1,31 @@
+@for (item of items(); track $index) {
+  @if (isMenuItem.routerLink(item)) {
+    <a
+      #element
+      matRipple
+      class="dc-main-menu__item"
+      routerLinkActive="dc-main-menu__item--active"
+      [routerLinkActiveOptions]="item.routerLinkActiveOptions ?? { exact: false }"
+      [routerLink]="item.routerLink"
+      [queryParams]="item.queryParams"
+      (isActiveChange)="$event ? activeLink.set({ item, element }) : null"
+    >
+      <ng-container [ngTemplateOutlet]="itemTmpl" [ngTemplateOutletContext]="{ $implicit: item }" />
+    </a>
+  } @else if (isMenuItem.href(item)) {
+    <a matRipple class="dc-main-menu__item" [href]="item.href" [attr.target]="item.target">
+      <ng-container [ngTemplateOutlet]="itemTmpl" [ngTemplateOutletContext]="{ $implicit: item }" />
+    </a>
+  } @else if (isMenuItem.command(item)) {
+    <button matRipple type="button" class="dc-main-menu__item" (click)="item.command()">
+      <ng-container [ngTemplateOutlet]="itemTmpl" [ngTemplateOutletContext]="{ $implicit: item }" />
+    </button>
+  }
+}
+
+<ng-template #itemTmpl let-item>
+  @if (item.icon) {
+    <mat-icon dcIcon [fill]="item === activeLink()?.item">{{ item.icon }}</mat-icon>
+  }
+  {{ item.label }}
+</ng-template>

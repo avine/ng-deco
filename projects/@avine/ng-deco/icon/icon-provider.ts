@@ -1,12 +1,8 @@
 import { inject, provideEnvironmentInitializer } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
+import { DcIconFontSetClass } from './icon-types';
 
-export type IconFontSetClass =
-  | 'material-symbols-outlined'
-  | 'material-symbols-rounded'
-  | 'material-symbols-sharp';
-
-export const provideIcons = (fontSetClass: IconFontSetClass) =>
+export const provideDcIcons = (fontSetClass: DcIconFontSetClass) =>
   provideEnvironmentInitializer(() => {
     const matIconRegistry = inject(MatIconRegistry);
 

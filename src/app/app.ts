@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { DcLayoutModule } from '@avine/ng-deco/layout';
+import { DcMenuItemFlat, DcMenuModule } from '@avine/ng-deco/menu';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,23 @@ import { DcLayoutModule } from '@avine/ng-deco/layout';
     MatIconModule,
     MatTooltipModule,
     RouterOutlet,
-    RouterLink,
     DcLayoutModule,
+    DcMenuModule,
   ],
   templateUrl: './app.html',
 })
-export class App {}
+export class App {
+  mainMenuItems: DcMenuItemFlat[] = [
+    {
+      label: 'Home',
+      icon: 'home',
+      routerLink: ['/'],
+      routerLinkActiveOptions: { exact: true },
+    },
+    {
+      label: 'Material',
+      icon: 'settings',
+      routerLink: ['/material'],
+    },
+  ];
+}

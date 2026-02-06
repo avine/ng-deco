@@ -1,9 +1,11 @@
-@use '@fontsource/lato/latin-400.css';
-@use '@fontsource/lato/latin-700.css';
+@use '@fontsource/roboto-condensed/latin-400.css';
+@use '@fontsource/roboto-condensed/latin-700.css';
 
 @use '@material-symbols/font-500/rounded.css';
 
 @use '@angular/material' as mat;
+
+@use '@avine/ng-deco/styles/core';
 
 html,
 body {
@@ -19,7 +21,7 @@ html {
         primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
-      typography: Lato,
+      typography: 'Roboto Condensed',
       density: -2,
     )
   );

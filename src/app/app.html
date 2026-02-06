@@ -1,4 +1,7 @@
 <dc-layout>
+  <dc-main-menu [items]="mainMenuItems" />
+  <dc-main-menu [items]="mainMenuItems" vertical />
+
   <router-outlet />
 </dc-layout>
 
@@ -18,11 +21,9 @@
 </ng-template>
 
 <ng-template dcLayoutSlotItem="desktopMenu">
-  <a routerLink="/">Home</a>
-  <a routerLink="/material">Material</a>
+  <dc-main-menu [items]="mainMenuItems" />
 </ng-template>
 
 <ng-template dcLayoutSlotItem="mobileMenu">
-  <a routerLink="/">Home</a>
-  <a routerLink="/material">Material</a>
+  <dc-main-menu [items]="mainMenuItems" vertical />
 </ng-template>
