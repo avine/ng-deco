@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, forwardRef, inject, input, ViewEncapsulation } from '@angular/core';
+import { Component, inject, input, ViewEncapsulation } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -22,7 +22,6 @@ import { DcSideMenuState } from './side-menu-state';
     RouterLink,
     RouterLinkActive,
     DcIconModule,
-    forwardRef(() => DcSideMenuNode),
   ],
   templateUrl: './side-menu-node.html',
   styleUrl: './side-menu-node.scss',
