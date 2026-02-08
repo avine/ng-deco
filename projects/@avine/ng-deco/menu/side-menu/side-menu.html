@@ -45,7 +45,7 @@
           </mat-icon>
         </button>
 
-        <dc-side-menu-v3
+        <dc-side-menu
           [class.dc-side-menu--hidden]="!state.expanded().has(item)"
           [items]="item.children"
           [_data]="{ level: data.level + 1, id }"

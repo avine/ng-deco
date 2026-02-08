@@ -15,7 +15,7 @@ interface _DcSideMenuData {
 }
 
 @Component({
-  selector: 'dc-side-menu-v3',
+  selector: 'dc-side-menu',
   host: { class: 'dc-side-menu' },
   providers: [dcSideMenuStateProvider],
   imports: [
@@ -31,7 +31,7 @@ interface _DcSideMenuData {
   styleUrl: './side-menu.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class DcSideMenuV3 {
+export class DcSideMenu {
   protected isMenuItem = _isMenuItem;
 
   protected state = inject(DcSideMenuState);
