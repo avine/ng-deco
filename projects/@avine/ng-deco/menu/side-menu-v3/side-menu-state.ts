@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { FactoryProvider, inject, Injectable, signal } from '@angular/core';
 import { DcMenuItem } from '../menu-types';
 
 @Injectable()
@@ -17,3 +17,9 @@ export class DcSideMenuState {
     });
   }
 }
+
+export const dcSideMenuStateProvider: FactoryProvider = {
+  provide: DcSideMenuState,
+  useFactory: () =>
+    inject(DcSideMenuState, { optional: true, skipSelf: true }) ?? new DcSideMenuState(),
+};

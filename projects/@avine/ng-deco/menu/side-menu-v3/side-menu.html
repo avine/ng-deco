@@ -1,8 +1,11 @@
+@let data = _data();
+
 <ul
   class="dc-side-menu__ul"
-  [class.dc-side-menu__ul--hidden]="hidden()"
-  [style.--dc-side-menu-level]="level()"
-  [attr.id]="uid()"
+  [class.dc-side-menu__ul--hidden]="data.hidden"
+  [style.--dc-side-menu-level]="data.level"
+  [attr.role]="data.level === 0 ? 'navigation' : null"
+  [attr.id]="data.parentUid"
 >
   @for (item of items(); track $index) {
     <li class="dc-side-menu__li">
@@ -29,9 +32,11 @@
 
         <dc-side-menu-v3
           [items]="item.children"
-          [level]="level() + 1"
-          [uid]="uid"
-          [hidden]="!state.expanded().has(item)"
+          [_data]="{
+            hidden: !state.expanded().has(item),
+            level: data.level + 1,
+            parentUid: uid,
+          }"
         />
       } @else if (isMenuItem.routerLink(item)) {
         <a

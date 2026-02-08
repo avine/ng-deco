@@ -6,21 +6,18 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DcIconModule } from '@avine/ng-deco/icon';
 import { _isMenuItem } from '../_menu-utils';
 import { DcMenuItem } from '../menu-types';
-import { DcSideMenuState } from './side-menu-state';
+import { DcSideMenuState, dcSideMenuStateProvider } from './side-menu-state';
+
+interface _DcSideMenuData {
+  hidden: boolean;
+  level: number;
+  parentUid?: string;
+}
 
 @Component({
   selector: 'dc-side-menu-v3',
-  host: {
-    class: 'dc-side-menu',
-    '[attr.role]': 'level() === 0 ? "navigation" : null',
-  },
-  providers: [
-    {
-      provide: DcSideMenuState,
-      useFactory: () =>
-        inject(DcSideMenuState, { optional: true, skipSelf: true }) ?? new DcSideMenuState(),
-    },
-  ],
+  host: { class: 'dc-side-menu' },
+  providers: [dcSideMenuStateProvider],
   imports: [
     NgTemplateOutlet,
     MatRippleModule,
@@ -40,11 +37,7 @@ export class DcSideMenuV3 {
 
   readonly items = input.required<DcMenuItem[]>();
 
-  readonly level = input(0);
-
-  readonly hidden = input(false);
-
-  readonly uid = input<string>();
+  readonly _data = input<_DcSideMenuData>({ hidden: false, level: 0 });
 
   private uidMap = new Map<DcMenuItem, string>();
 
