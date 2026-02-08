@@ -1,12 +1,12 @@
 import { FactoryProvider, inject, Injectable, signal } from '@angular/core';
 import { _isMenuItem } from '../_menu-utils';
-import { DcMenuItem, DcMenuItemBase, DcMenuItemChildren } from '../menu-types';
+import { DcMenuItem, DcMenuItemChildren } from '../menu-types';
 
 @Injectable()
 export class DcSideMenuState {
-  readonly expanded = signal(new Set<DcMenuItemBase & DcMenuItemChildren>());
+  readonly expanded = signal(new Set<DcMenuItemChildren>());
 
-  toggle(item: DcMenuItemBase & DcMenuItemChildren, expanded?: boolean) {
+  toggle(item: DcMenuItemChildren, expanded?: boolean) {
     this.expanded.update((prev) => {
       if ((expanded === false && !prev.has(item)) || (expanded === true && prev.has(item))) {
         return prev;
@@ -26,7 +26,7 @@ export class DcSideMenuState {
   }
 
   expandAll(items: DcMenuItem[]) {
-    const next = new Set<DcMenuItemBase & DcMenuItemChildren>();
+    const next = new Set<DcMenuItemChildren>();
     const traverse = (_items: DcMenuItem[]) => {
       _items.forEach((item) => {
         if (_isMenuItem.children(item)) {

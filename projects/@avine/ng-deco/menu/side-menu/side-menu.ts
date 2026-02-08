@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DcIconModule } from '@avine/ng-deco/icon';
 import { _isMenuItem } from '../_menu-utils';
-import { DcMenuItem, DcMenuItemBase, DcMenuItemRouterLink } from '../menu-types';
+import { DcMenuItem, DcMenuItemRouterLink } from '../menu-types';
 import { DcSideMenuState, dcSideMenuStateProvider } from './side-menu-state';
 
 interface _DcSideMenuData {
@@ -40,7 +40,7 @@ export class DcSideMenu {
 
   readonly _data = input<_DcSideMenuData>({ level: 0 });
 
-  readonly activeMenuItem = output<DcMenuItemBase & DcMenuItemRouterLink>();
+  readonly activeMenuItem = output<DcMenuItemRouterLink>();
 
   private idMap = new Map<DcMenuItem, string>();
 

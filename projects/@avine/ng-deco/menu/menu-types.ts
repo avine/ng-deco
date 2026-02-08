@@ -1,30 +1,33 @@
 import { IsActiveMatchOptions, Params } from '@angular/router';
 
-export type DcMenuItem = DcMenuItemBase &
-  (DcMenuItemChildren | DcMenuItemRouterLink | DcMenuItemHref | DcMenuItemCommand);
+export type DcMenuItem =
+  | DcMenuItemChildren
+  | DcMenuItemRouterLink
+  | DcMenuItemHref
+  | DcMenuItemCommand;
 
 export type DcMenuItemFlat = Exclude<DcMenuItem, DcMenuItemChildren>;
 
-export interface DcMenuItemBase {
+interface DcMenuItemBase {
   label: string;
   icon?: string;
 }
 
-export interface DcMenuItemChildren {
+export interface DcMenuItemChildren extends DcMenuItemBase {
   children: DcMenuItem[];
 }
 
-export interface DcMenuItemRouterLink {
+export interface DcMenuItemRouterLink extends DcMenuItemBase {
   routerLink: string[];
   routerLinkActiveOptions?: { exact: boolean } | IsActiveMatchOptions;
   queryParams?: Params;
 }
 
-export interface DcMenuItemHref {
+export interface DcMenuItemHref extends DcMenuItemBase {
   href: string;
   target?: '_blank' | '_parent' | '_self' | '_top';
 }
 
-export interface DcMenuItemCommand {
+export interface DcMenuItemCommand extends DcMenuItemBase {
   command: CallableFunction;
 }
