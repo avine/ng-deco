@@ -1,5 +1,21 @@
 @let data = _data();
 
+@if (data.level === 0) {
+  <div style="text-align: end">
+    @if (state.expanded().size) {
+      <button matButton (click)="state.collapseAll()">
+        Collapse all
+        <mat-icon iconPositionEnd>indeterminate_check_box</mat-icon>
+      </button>
+    } @else {
+      <button matButton (click)="state.expandAll(this.items())">
+        Expand all
+        <mat-icon iconPositionEnd>add_box</mat-icon>
+      </button>
+    }
+  </div>
+}
+
 <ul
   class="dc-side-menu__ul"
   [style.--dc-side-menu-level]="data.level"
@@ -33,6 +49,7 @@
           [class.dc-side-menu--hidden]="!state.expanded().has(item)"
           [items]="item.children"
           [_data]="{ level: data.level + 1, id }"
+          (activeMenuItem)="state.toggle(item, true); activeMenuItem.emit($event)"
         />
       } @else if (isMenuItem.routerLink(item)) {
         <a
@@ -42,6 +59,7 @@
           [routerLinkActiveOptions]="item.routerLinkActiveOptions ?? { exact: false }"
           [routerLink]="item.routerLink"
           [queryParams]="item.queryParams"
+          (isActiveChange)="$event ? activeMenuItem.emit(item) : null"
         >
           <ng-container
             [ngTemplateOutlet]="itemTmpl"

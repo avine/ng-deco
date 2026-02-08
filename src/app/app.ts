@@ -41,22 +41,22 @@ export class App {
       routerLinkActiveOptions: { exact: true },
     },
     {
-      label: 'Components',
+      label: 'Components 3',
       icon: 'widgets',
       children: [
         {
-          label: 'Material',
-          icon: 'settings',
-          routerLink: ['/material'],
+          label: 'Run command',
+          icon: 'terminal',
+          command: () => console.log('Command executed'),
         },
         {
-          label: 'Actions',
+          label: 'Actions 2',
           icon: 'bolt',
           children: [
             {
-              label: 'Run command',
-              icon: 'terminal',
-              command: () => console.log('Command executed'),
+              label: 'Material 1',
+              icon: 'settings',
+              routerLink: ['/material'],
             },
           ],
         },
@@ -66,11 +66,6 @@ export class App {
       label: 'Components2',
       icon: 'widgets',
       children: [
-        {
-          label: 'Material',
-          icon: 'settings',
-          routerLink: ['/material'],
-        },
         {
           label: 'Actions',
           icon: 'bolt',
@@ -91,4 +86,8 @@ export class App {
       target: '_blank',
     },
   ];
+
+  log(event: DcMenuItem) {
+    console.log(event);
+  }
 }

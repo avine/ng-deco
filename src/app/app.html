@@ -3,7 +3,7 @@
   <dc-main-menu [items]="mainMenuItems" vertical />
 
   <hr />
-  <dc-side-menu-v3 [items]="sideMenuItems" />
+  <dc-side-menu-v3 [items]="sideMenuItems" (activeMenuItem)="log($event)" />
   <hr />
   <!--
     <dc-side-menu-v2 [items]="sideMenuItems" />
