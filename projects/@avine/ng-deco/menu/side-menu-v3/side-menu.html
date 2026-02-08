@@ -2,7 +2,6 @@
 
 <ul
   class="dc-side-menu__ul"
-  [class.dc-side-menu__ul--hidden]="data.hidden"
   [style.--dc-side-menu-level]="data.level"
   [attr.role]="data.level === 0 ? 'navigation' : null"
   [attr.id]="data.parentUid"
@@ -31,12 +30,9 @@
         </button>
 
         <dc-side-menu-v3
+          [class.dc-side-menu--hidden]="!state.expanded().has(item)"
           [items]="item.children"
-          [_data]="{
-            hidden: !state.expanded().has(item),
-            level: data.level + 1,
-            parentUid: uid,
-          }"
+          [_data]="{ level: data.level + 1, parentUid: uid }"
         />
       } @else if (isMenuItem.routerLink(item)) {
         <a

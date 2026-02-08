@@ -9,7 +9,6 @@ import { DcMenuItem } from '../menu-types';
 import { DcSideMenuState, dcSideMenuStateProvider } from './side-menu-state';
 
 interface _DcSideMenuData {
-  hidden: boolean;
   level: number;
   parentUid?: string;
 }
@@ -37,7 +36,7 @@ export class DcSideMenuV3 {
 
   readonly items = input.required<DcMenuItem[]>();
 
-  readonly _data = input<_DcSideMenuData>({ hidden: false, level: 0 });
+  readonly _data = input<_DcSideMenuData>({ level: 0 });
 
   private uidMap = new Map<DcMenuItem, string>();
 
