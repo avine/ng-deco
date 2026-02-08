@@ -1,0 +1,74 @@
+<ul
+  class="dc-side-menu__ul"
+  [class.dc-side-menu__ul--hidden]="hidden()"
+  [style.--dc-side-menu-level]="level()"
+  [attr.id]="uid()"
+>
+  @for (item of items(); track $index) {
+    <li class="dc-side-menu__li">
+      @if (isMenuItem.children(item)) {
+        @let uid = getUid(item);
+
+        <button
+          matRipple
+          type="button"
+          class="dc-side-menu__item dc-side-menu__item--parent"
+          [aria-expanded]="state.expanded().has(item)"
+          [aria-controls]="uid"
+          (click)="state.toggle(item)"
+        >
+          <ng-container
+            [ngTemplateOutlet]="itemTmpl"
+            [ngTemplateOutletContext]="{ $implicit: item }"
+          />
+
+          <mat-icon class="dc-side-menu__chevron">
+            {{ state.expanded().has(item) ? 'expand_more' : 'chevron_right' }}
+          </mat-icon>
+        </button>
+
+        <dc-side-menu-v3
+          [items]="item.children"
+          [level]="level() + 1"
+          [uid]="uid"
+          [hidden]="!state.expanded().has(item)"
+        />
+      } @else if (isMenuItem.routerLink(item)) {
+        <a
+          matRipple
+          class="dc-side-menu__item"
+          routerLinkActive="dc-side-menu__item--active"
+          [routerLinkActiveOptions]="item.routerLinkActiveOptions ?? { exact: false }"
+          [routerLink]="item.routerLink"
+          [queryParams]="item.queryParams"
+        >
+          <ng-container
+            [ngTemplateOutlet]="itemTmpl"
+            [ngTemplateOutletContext]="{ $implicit: item }"
+          />
+        </a>
+      } @else if (isMenuItem.href(item)) {
+        <a matRipple class="dc-side-menu__item" [href]="item.href" [attr.target]="item.target">
+          <ng-container
+            [ngTemplateOutlet]="itemTmpl"
+            [ngTemplateOutletContext]="{ $implicit: item }"
+          />
+        </a>
+      } @else if (isMenuItem.command(item)) {
+        <button matRipple type="button" class="dc-side-menu__item" (click)="item.command()">
+          <ng-container
+            [ngTemplateOutlet]="itemTmpl"
+            [ngTemplateOutletContext]="{ $implicit: item }"
+          />
+        </button>
+      }
+    </li>
+  }
+</ul>
+
+<ng-template #itemTmpl let-item>
+  @if (item.icon) {
+    <mat-icon dcIcon>{{ item.icon }}</mat-icon>
+  }
+  <span class="dc-side-menu__label">{{ item.label }}</span>
+</ng-template>
