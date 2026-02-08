@@ -10,7 +10,7 @@ import { DcSideMenuState, dcSideMenuStateProvider } from './side-menu-state';
 
 interface _DcSideMenuData {
   level: number;
-  parentUid?: string;
+  id?: string;
 }
 
 @Component({
@@ -38,14 +38,14 @@ export class DcSideMenuV3 {
 
   readonly _data = input<_DcSideMenuData>({ level: 0 });
 
-  private uidMap = new Map<DcMenuItem, string>();
+  private idMap = new Map<DcMenuItem, string>();
 
-  protected getUid(item: DcMenuItem) {
-    let uid = this.uidMap.get(item);
-    if (!uid) {
-      uid = `side-menu-${crypto.randomUUID()}`;
-      this.uidMap.set(item, uid);
+  protected getId(item: DcMenuItem) {
+    let id = this.idMap.get(item);
+    if (!id) {
+      id = `side-menu-${crypto.randomUUID()}`;
+      this.idMap.set(item, id);
     }
-    return uid;
+    return id;
   }
 }
