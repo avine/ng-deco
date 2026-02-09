@@ -1,18 +1,14 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { DcBreakpointObserver } from '@avine/ng-deco/breakpoint';
+import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DcMobileMenuSlotService {
-  readonly isMobile = toSignal(
-    inject(BreakpointObserver)
-      .observe([Breakpoints.XSmall])
-      .pipe(map(({ matches }) => matches)),
-  );
+  readonly isMobile = inject(DcBreakpointObserver).matches(['XSmall']);
 
   readonly opened = signal(false);
 

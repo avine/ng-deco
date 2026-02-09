@@ -1,9 +1,9 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { computed, effect, inject, Injectable, signal, untracked } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { DcBreakpointObserver } from '@avine/ng-deco/breakpoint';
+import { filter } from 'rxjs';
 import { DcLayoutConfigService } from './layout-config-service';
 import { DcLayoutSlotService } from './layout-slot-service';
 
@@ -15,11 +15,7 @@ export class DcLayoutSideService {
 
   private slotService = inject(DcLayoutSlotService);
 
-  readonly isMobile = toSignal(
-    inject(BreakpointObserver)
-      .observe([Breakpoints.XSmall])
-      .pipe(map(({ matches }) => matches)),
-  );
+  readonly isMobile = inject(DcBreakpointObserver).matches(['XSmall']);
 
   readonly sidenavOpened = signal(false);
 
