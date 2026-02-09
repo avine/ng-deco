@@ -1,13 +1,22 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, effect, inject, input, output, ViewEncapsulation } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  effect,
+  inject,
+  input,
+  numberAttribute,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DcIconModule } from '@avine/ng-deco/icon';
-import { _findAllMenuItemChildren, _isMenuItem } from '../_menu-utils';
+import { _isMenuItem } from '../_menu-utils';
 import { DcMenuItem, DcMenuItemRouterLink } from '../menu-types';
-import { DcSideMenuState, dcSideMenuStateProvider } from './side-menu-state';
+import { DcSideMenuChildren, dcSideMenuStateProvider } from './side-menu-children';
 
 interface _DcSideMenuData {
   level: number;
@@ -34,9 +43,13 @@ interface _DcSideMenuData {
 export class DcSideMenu {
   protected isMenuItem = _isMenuItem;
 
-  protected state = inject(DcSideMenuState);
+  protected children = inject(DcSideMenuChildren);
 
   readonly items = input.required<DcMenuItem[]>();
+
+  readonly toolbarThreshold = input(3, { transform: numberAttribute });
+
+  readonly toolbarHidden = input(false, { transform: booleanAttribute });
 
   readonly _data = input<_DcSideMenuData>({ level: 0 });
 
@@ -47,7 +60,7 @@ export class DcSideMenu {
       if (this._data().level !== 0) {
         return;
       }
-      this.state.expandable.set(_findAllMenuItemChildren(this.items()));
+      this.children.update(this.items());
     });
   }
 }

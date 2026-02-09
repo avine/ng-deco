@@ -1,14 +1,15 @@
 @let data = _data();
+@let childrenIdMap = children.idMap();
 
-@if (data.level === 0) {
-  <div style="text-align: end">
-    @if (state.expanded().size) {
-      <button matButton (click)="state.collapseAll()">
+@if (data.level === 0 && !toolbarHidden() && childrenIdMap.size >= toolbarThreshold()) {
+  <div class="dc-side-menu__toolbar">
+    @if (children.expandedSet().size) {
+      <button matButton (click)="children.collapseAll()">
         Collapse all
         <mat-icon iconPositionEnd>indeterminate_check_box</mat-icon>
       </button>
     } @else {
-      <button matButton (click)="state.expandAll()">
+      <button matButton (click)="children.expandAll()">
         Expand all
         <mat-icon iconPositionEnd>add_box</mat-icon>
       </button>
@@ -25,31 +26,37 @@
   @for (item of items(); track $index) {
     <li class="dc-side-menu__li">
       @if (isMenuItem.children(item)) {
-        @let id = state.getId(item);
+        @let expanded = children.expandedSet().has(item);
+        @let id = childrenIdMap.get(item);
 
         <button
           matRipple
           type="button"
           class="dc-side-menu__item dc-side-menu__item--parent"
-          [aria-expanded]="state.expanded().has(item)"
+          [aria-expanded]="expanded"
           [aria-controls]="id"
-          (click)="state.toggle(item)"
+          (click)="children.toggle(item)"
         >
           <ng-container
             [ngTemplateOutlet]="itemTmpl"
             [ngTemplateOutletContext]="{ $implicit: item }"
           />
 
-          <mat-icon class="dc-side-menu__chevron">
-            {{ state.expanded().has(item) ? 'expand_more' : 'chevron_right' }}
+          <mat-icon
+            class="dc-side-menu__chevron"
+            [class.dc-side-menu__chevron--expanded]="expanded"
+            dcIcon
+            size="md"
+          >
+            {{ 'chevron_right' }}
           </mat-icon>
         </button>
 
         <dc-side-menu
-          [class.dc-side-menu--hidden]="!state.expanded().has(item)"
+          [class.dc-side-menu--hidden]="!expanded"
           [items]="item.children"
           [_data]="{ level: data.level + 1, id }"
-          (activeMenuItem)="state.toggle(item, true); activeMenuItem.emit($event)"
+          (activeMenuItem)="children.toggle(item, true); activeMenuItem.emit($event)"
         />
       } @else if (isMenuItem.routerLink(item)) {
         <a
@@ -87,7 +94,7 @@
 
 <ng-template #itemTmpl let-item>
   @if (item.icon) {
-    <mat-icon dcIcon>{{ item.icon }}</mat-icon>
+    <mat-icon dcIcon size="md">{{ item.icon }}</mat-icon>
   }
   <span class="dc-side-menu__label">{{ item.label }}</span>
 </ng-template>

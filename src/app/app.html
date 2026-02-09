@@ -1,11 +1,4 @@
 <dc-layout>
-  <dc-main-menu [items]="mainMenuItems" />
-  <dc-main-menu [items]="mainMenuItems" vertical />
-
-  <hr />
-  <dc-side-menu [items]="sideMenuItems" (activeMenuItem)="log($event)" />
-  <hr />
-
   <router-outlet />
 </dc-layout>
 
@@ -33,5 +26,5 @@
 </ng-template>
 
 <ng-template dcLayoutSlotItem="sidenav">
-  <dc-side-menu [items]="sideMenuItems" />
+  <dc-side-menu [items]="sideMenuItems" style="margin-inline: -0.75rem" />
 </ng-template>

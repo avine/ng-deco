@@ -25,7 +25,7 @@
 
 <ng-template #itemTmpl let-item>
   @if (item.icon) {
-    <mat-icon dcIcon [fill]="item === activeLink()?.item">{{ item.icon }}</mat-icon>
+    <mat-icon dcIcon size="md" [fill]="item === activeLink()?.item">{{ item.icon }}</mat-icon>
   }
   {{ item.label }}
 </ng-template>
