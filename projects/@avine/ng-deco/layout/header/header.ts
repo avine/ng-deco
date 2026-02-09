@@ -3,6 +3,7 @@ import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DcBreakpointObserver } from '@avine/ng-deco/breakpoint';
 import { DcLayoutSlotItemsPipe } from '../layout-slot-items-pipe';
 import { DcMobileMenuSlotService } from '../mobile-menu-slot/mobile-menu-slot-service';
 
@@ -21,5 +22,7 @@ import { DcMobileMenuSlotService } from '../mobile-menu-slot/mobile-menu-slot-se
   encapsulation: ViewEncapsulation.None,
 })
 export class DcHeader {
+  readonly isMobile = inject(DcBreakpointObserver).matches(['XSmall']);
+
   protected mobileMenuSlotService = inject(DcMobileMenuSlotService);
 }

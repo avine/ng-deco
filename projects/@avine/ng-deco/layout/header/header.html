@@ -16,7 +16,7 @@
     <ng-container [ngTemplateOutlet]="item.template" />
   }
 
-  @if (desktopMenuItems.length) {
+  @if (!isMobile() && desktopMenuItems.length) {
     <div class="dc-header__desktop-menu-slot">
       @for (item of ('desktopMenu' | dcLayoutSlotItems)(); track item) {
         <ng-container [ngTemplateOutlet]="item.template" />
