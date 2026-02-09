@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DcIconModule } from '@avine/ng-deco/icon';
 import { _isMenuItem } from '../_menu-utils';
-import { DcMenuItem, DcMenuItemRouterLink } from '../menu-types';
+import { DcMenuItem, DcMenuItemChildren, DcMenuItemRouterLink } from '../menu-types';
 import { DcSideMenuChildren, dcSideMenuStateProvider } from './side-menu-children';
 
 interface _DcSideMenuData {
@@ -51,9 +51,11 @@ export class DcSideMenu {
 
   readonly toolbarHidden = input(false, { transform: booleanAttribute });
 
-  readonly _data = input<_DcSideMenuData>({ level: 0 });
+  readonly autoToggleChildren = input(true, { transform: booleanAttribute });
 
-  readonly activeMenuItem = output<DcMenuItemRouterLink>();
+  readonly activeRouterLink = output<DcMenuItemRouterLink>();
+
+  readonly _data = input<_DcSideMenuData>({ level: 0 });
 
   constructor() {
     effect(() => {
@@ -62,5 +64,15 @@ export class DcSideMenu {
       }
       this.children.update(this.items());
     });
+  }
+
+  protected propagateActiveRouterLink(
+    item: DcMenuItemChildren,
+    activeRouterLink: DcMenuItemRouterLink,
+  ) {
+    if (this.autoToggleChildren()) {
+      this.children.toggle(item, true);
+    }
+    this.activeRouterLink.emit(activeRouterLink);
   }
 }

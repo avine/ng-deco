@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterOutlet } from '@angular/router';
-import { DcLayoutModule } from '@avine/ng-deco/layout';
+import { DcLayoutModule, DcLayoutSideService } from '@avine/ng-deco/layout';
 import { DcMenuItem, DcMenuItemFlat, DcMenuModule } from '@avine/ng-deco/menu';
 
 @Component({
@@ -19,6 +19,8 @@ import { DcMenuItem, DcMenuItemFlat, DcMenuModule } from '@avine/ng-deco/menu';
   templateUrl: './app.html',
 })
 export class App {
+  layoutSideService = inject(DcLayoutSideService);
+
   mainMenuItems: DcMenuItemFlat[] = [
     {
       label: 'Home',

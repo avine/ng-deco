@@ -26,5 +26,9 @@
 </ng-template>
 
 <ng-template dcLayoutSlotItem="sidenav">
-  <dc-side-menu [items]="sideMenuItems" style="margin-inline: -0.75rem" />
+  <dc-side-menu
+    [items]="sideMenuItems"
+    [autoToggleChildren]="layoutSideService.sidenavOpened()"
+    style="margin-inline: -0.75rem"
+  />
 </ng-template>
