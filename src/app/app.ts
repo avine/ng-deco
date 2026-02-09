@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterOutlet } from '@angular/router';
-import { DcLayoutModule, DcLayoutSideService } from '@avine/ng-deco/layout';
+import { DcLayoutConfigService, DcLayoutModule, DcLayoutSideService } from '@avine/ng-deco/layout';
 import { DcMenuItem, DcMenuItemFlat, DcMenuModule } from '@avine/ng-deco/menu';
 
 @Component({
@@ -20,6 +20,10 @@ import { DcMenuItem, DcMenuItemFlat, DcMenuModule } from '@avine/ng-deco/menu';
 })
 export class App {
   layoutSideService = inject(DcLayoutSideService);
+
+  constructor() {
+    inject(DcLayoutConfigService).register({ sidebarDesktopMode: 'side' });
+  }
 
   mainMenuItems: DcMenuItemFlat[] = [
     {
@@ -88,8 +92,4 @@ export class App {
       target: '_blank',
     },
   ];
-
-  log(event: DcMenuItem) {
-    console.log(event);
-  }
 }
