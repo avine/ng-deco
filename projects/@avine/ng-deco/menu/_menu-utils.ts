@@ -15,3 +15,16 @@ export const _isMenuItem = {
 
   children: (item: DcMenuItem): item is DcMenuItemChildren => 'children' in item,
 } as const;
+
+export const _findAllMenuItemChildren = (items: DcMenuItem[]) => {
+  const children: DcMenuItemChildren[] = [];
+
+  (function traverse(_items: DcMenuItem[]) {
+    _items.filter(_isMenuItem.children).forEach((item) => {
+      children.push(item);
+      traverse(item.children);
+    });
+  })(items);
+
+  return children;
+};

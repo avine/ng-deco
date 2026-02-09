@@ -1,9 +1,27 @@
 import { FactoryProvider, inject, Injectable, signal } from '@angular/core';
-import { _isMenuItem } from '../_menu-utils';
-import { DcMenuItem, DcMenuItemChildren } from '../menu-types';
+import { DcMenuItemChildren } from '../menu-types';
 
 @Injectable()
 export class DcSideMenuState {
+  // ----- expandable -----
+
+  readonly expandable = signal<DcMenuItemChildren[]>([]);
+
+  // ----- id -----
+
+  private idMap = new Map<DcMenuItemChildren, string>();
+
+  getId(item: DcMenuItemChildren) {
+    let id = this.idMap.get(item);
+    if (!id) {
+      id = `dc-side-menu-${crypto.randomUUID()}`;
+      this.idMap.set(item, id);
+    }
+    return id;
+  }
+
+  // ----- expanded -----
+
   readonly expanded = signal(new Set<DcMenuItemChildren>());
 
   toggle(item: DcMenuItemChildren, expanded?: boolean) {
@@ -22,23 +40,18 @@ export class DcSideMenuState {
   }
 
   collapseAll() {
+    if (!this.expanded().size) {
+      return;
+    }
     this.expanded.set(new Set());
   }
 
-  expandAll(items: DcMenuItem[]) {
-    const next = new Set<DcMenuItemChildren>();
-    const traverse = (_items: DcMenuItem[]) => {
-      _items.forEach((item) => {
-        if (_isMenuItem.children(item)) {
-          next.add(item);
-          traverse(item.children);
-        }
-      });
-    };
-    traverse(items);
-    if (next.size) {
-      this.expanded.set(next);
+  expandAll() {
+    const expandable = this.expandable();
+    if (!expandable.length) {
+      return;
     }
+    this.expanded.set(new Set(expandable));
   }
 }
 

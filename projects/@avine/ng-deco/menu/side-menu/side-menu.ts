@@ -1,11 +1,11 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, inject, input, output, ViewEncapsulation } from '@angular/core';
+import { Component, effect, inject, input, output, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DcIconModule } from '@avine/ng-deco/icon';
-import { _isMenuItem } from '../_menu-utils';
+import { _findAllMenuItemChildren, _isMenuItem } from '../_menu-utils';
 import { DcMenuItem, DcMenuItemRouterLink } from '../menu-types';
 import { DcSideMenuState, dcSideMenuStateProvider } from './side-menu-state';
 
@@ -42,14 +42,12 @@ export class DcSideMenu {
 
   readonly activeMenuItem = output<DcMenuItemRouterLink>();
 
-  private idMap = new Map<DcMenuItem, string>();
-
-  protected getId(item: DcMenuItem) {
-    let id = this.idMap.get(item);
-    if (!id) {
-      id = `side-menu-${crypto.randomUUID()}`;
-      this.idMap.set(item, id);
-    }
-    return id;
+  constructor() {
+    effect(() => {
+      if (this._data().level !== 0) {
+        return;
+      }
+      this.state.expandable.set(_findAllMenuItemChildren(this.items()));
+    });
   }
 }
