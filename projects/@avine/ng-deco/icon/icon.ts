@@ -15,11 +15,11 @@ import { mapToDcIconClass, mapToDcIconMaxIterations } from './icon-utils';
  * Enhancing the Material icon component (`mat-icon`)
  *
  * The directive requires CSS styles to work properly that are defined and imported globally in:
- *   `ng-zealous/styles/modules/_icon.scss`
+ *   `@avine/ng-deco/styles/modules/_icon.scss`
  *
  * @example
  * ```html
- * <mat-icon zIcon size="xl" pull="left" animation="beat">home</mat-icon>
+ * <mat-icon dcIcon size="xl" pull="left" animation="beat">home</mat-icon>
  * ```
  */
 @Directive({

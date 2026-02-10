@@ -1,5 +1,9 @@
+<dc-demo-title />
+
+<dc-demo-state-form [state]="state" />
+
 <div style="min-height: 100%; align-content: center">
-  @for (item of items; track $index) {
+  @for (item of items(); track $index) {
     @if ($first) {
       <p style="text-align: center">
         <button (click)="sideService.toggleSidenav()">Sidenav</button>
@@ -19,10 +23,13 @@
   </div>
 </ng-template>-->
 
-<ng-template dcLayoutSlotItem="sidebar">
-  <div style="min-height: 100%; align-content: center">
-    @for (item of items; track $index) {
-      <p>demo works!</p>
-    }
-  </div>
-</ng-template>
+@if (sideService.sidebarOpenedAsync()) {
+  <ng-template dcLayoutSlotItem="sidebar">
+    <div style="min-height: 100%; align-content: center">
+      <input />
+      @for (item of items(); track $index) {
+        <p>demo works!</p>
+      }
+    </div>
+  </ng-template>
+}

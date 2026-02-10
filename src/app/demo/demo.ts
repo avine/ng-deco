@@ -1,9 +1,10 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
+import { DcDemoModule, dcDemoProp } from '@avine/ng-deco/demo';
 import { DcLayoutModule, DcLayoutSideService } from '@avine/ng-deco/layout';
 
 @Component({
   selector: 'app-demo',
-  imports: [DcLayoutModule],
+  imports: [DcLayoutModule, DcDemoModule],
   templateUrl: './demo.html',
   styleUrl: './demo.scss',
   encapsulation: ViewEncapsulation.None,
@@ -11,5 +12,9 @@ import { DcLayoutModule, DcLayoutSideService } from '@avine/ng-deco/layout';
 export class Demo {
   sideService = inject(DcLayoutSideService);
 
-  items = Array(25).fill('');
+  state = {
+    size: dcDemoProp([1, 10, 20]),
+  };
+
+  items = computed(() => Array(this.state.size()).fill(''));
 }

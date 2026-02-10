@@ -21,10 +21,12 @@ html {
         primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
-      typography: 'Roboto Condensed',
+      typography: '"Roboto Condensed"',
       density: -2,
     )
   );
+
+  @include mat.system-classes();
 }
 
 body {
