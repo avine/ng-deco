@@ -4,6 +4,7 @@ import {
   Component,
   computed,
   inject,
+  signal,
   viewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -63,7 +64,13 @@ export class DcLayout {
     ].join('; ');
   });
 
+  protected sidenavOpenedAsync = signal(false);
+  protected sidebarOpenedAsync = signal(false);
+
   constructor() {
+    this.sideService.sidenavOpenedAsync = this.sidenavOpenedAsync.asReadonly();
+    this.sideService.sidebarOpenedAsync = this.sidebarOpenedAsync.asReadonly();
+
     afterRenderEffect(() => {
       this.config();
 

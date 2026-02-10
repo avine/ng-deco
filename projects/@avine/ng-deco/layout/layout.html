@@ -15,7 +15,7 @@
   <button
     class="dc-layout__sidenav-toggle-open"
     dcSidenavToggle="open"
-    [openCollapsed]="sideService.sidenavOpened()"
+    [openCollapsed]="sideService.sidenavOpenedAsync()"
     (click)="sideService.toggleSidenav()"
   >
     Sidenav
@@ -38,6 +38,8 @@
     [mode]="sideService.sidenavMode()"
     [opened]="sideService.sidenavOpened()"
     (closedStart)="sideService.toggleSidenav(false)"
+    (openedStart)="sidenavOpenedAsync.set(true)"
+    (closed)="sidenavOpenedAsync.set(false)"
   >
     <dc-sidenav />
   </mat-drawer>
@@ -60,6 +62,8 @@
     position="end"
     [mode]="sideService.sidebarMode()"
     [opened]="sideService.sidebarOpened()"
+    (openedStart)="sidebarOpenedAsync.set(true)"
+    (closed)="sidebarOpenedAsync.set(false)"
   >
     <dc-sidebar />
   </mat-drawer>

@@ -47,10 +47,8 @@ $transition-delay: 200ms;
   &--open {
     width: $full-size;
 
-    transition:
-      left $transition,
-      width $transition,
-      box-shadow $transition;
+    transition: $transition;
+    transition-property: left, width, box-shadow;
   }
 
   &--open &__label {
@@ -68,11 +66,6 @@ $transition-delay: 200ms;
   @media (hover: hover) and (pointer: fine) {
     &--open {
       left: calc(-2 * $grid-gap);
-
-      transition:
-        left $transition $transition-duration,
-        width $transition,
-        box-shadow $transition;
     }
 
     &--open:hover:not(&--open-collapsed) {
@@ -80,10 +73,7 @@ $transition-delay: 200ms;
       width: calc-size(auto, size);
       left: 0;
 
-      transition:
-        left $transition $transition-delay,
-        width $transition $transition-delay,
-        box-shadow $transition $transition-delay;
+      transition-delay: $transition-delay;
     }
 
     &--open:hover:not(&--open-collapsed) &__label {
@@ -98,11 +88,7 @@ $transition-delay: 200ms;
     opacity: 0;
     left: calc(-1.5 * #{$full-size});
 
-    transition:
-      opacity $transition,
-      left $transition,
-      width $transition,
-      box-shadow $transition;
+    transition-property: opacity, left, width, box-shadow;
   }
 
   // ----- Close button -----

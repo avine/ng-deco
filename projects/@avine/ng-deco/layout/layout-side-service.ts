@@ -1,4 +1,4 @@
-import { computed, effect, inject, Injectable, signal, untracked } from '@angular/core';
+import { computed, effect, inject, Injectable, Signal, signal, untracked } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
@@ -18,8 +18,10 @@ export class DcLayoutSideService {
   readonly isMobile = inject(DcBreakpointObserver).matches(['XSmall']);
 
   readonly sidenavOpened = signal(false);
-
   readonly sidebarOpened = signal(false);
+
+  sidenavOpenedAsync!: Signal<boolean>;
+  sidebarOpenedAsync!: Signal<boolean>;
 
   readonly sidenavMode = computed((): MatDrawerMode => (this.isMobile() ? 'over' : 'side'));
 
